@@ -9,6 +9,7 @@ import { RouteManagerComponent } from './pages/route-manager/route-manager.compo
 import { ItemsManagerComponent } from './pages/items-manager/items-manager.component';
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -19,11 +20,15 @@ import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.componen
     RouteManagerComponent,
     ItemsManagerComponent,
     AdminHomeComponent,
-    TeacherHomeComponent
+    TeacherHomeComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
     TeacherRouterRoutingModule
+  ],
+  exports: [
+    HeaderComponent
   ]
 })
 export class TeacherRouterModule { }
