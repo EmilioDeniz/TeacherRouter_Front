@@ -1,11 +1,18 @@
 
 .mapContainer {
-    border-radius: 30px;
+    border-radius: 15px;
     background-color: transparent;
     line-height: 1rem;
     align-items: center;
     display: block;
     margin: 0 auto;
+    height: 60%;
+    width: 80%;
+}
+
+.mapContainer img {
+    height: fit-content;
+    width: fit-content;
 }
 
 /*Panel para mostrar el mapa*/
