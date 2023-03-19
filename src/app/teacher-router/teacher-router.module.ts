@@ -10,6 +10,7 @@ import { ItemsManagerComponent } from './pages/items-manager/items-manager.compo
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
 import { HeaderComponent } from './components/header/header.component';
+import { MapComponent } from './components/map/map.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HeaderComponent } from './components/header/header.component';
     ItemsManagerComponent,
     AdminHomeComponent,
     TeacherHomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    MapComponent
   ],
   imports: [
     CommonModule,
