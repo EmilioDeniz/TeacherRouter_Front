@@ -1,0 +1,15 @@
+
+.mapContainer {
+    border-radius: 30px;
+    background-color: transparent;
+    line-height: 1rem;
+    align-items: center;
+    display: block;
+    margin: 0 auto;
+}
+
+/*Panel para mostrar el mapa*/
+.mapDisplay {
+
+}
+
