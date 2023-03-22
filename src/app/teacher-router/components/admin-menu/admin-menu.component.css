@@ -1,35 +1,15 @@
-/*section {
-  display: table;
-}
-
-button {
-  width: available;
-}
-
-.admin-buttons {
-  display: grid;
-
-  border: solid;
-}
-*/
-.example-container {
-  height: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-
-.menu-icon {
-
-}
-
-.example-sidenav {
-  padding: 20px;
-  width: 100%;
-  height: 100%;
+.sidenav {
+  width: 250px;
+  background-color: #f1f1f1;
+  transition: all 0.3s ease-in-out;
 }
 
 .admin-button {
-  height: 20%;
   display: block;
-  width: 100%;
-  background-color: #7596F5;
+  margin: 10px auto;
+  width: calc(100% - 20px);
+}
+
+.admin-button:hover {
+  transform: scale(1.05);
 }

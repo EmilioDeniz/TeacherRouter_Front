@@ -3,19 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TeacherRouterModule } from "./teacher-router/teacher-router.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        TeacherRouterModule,
-        BrowserAnimationsModule
-    ],
+  imports: [
+      BrowserModule,
+      AppRoutingModule,
+      BrowserAnimationsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

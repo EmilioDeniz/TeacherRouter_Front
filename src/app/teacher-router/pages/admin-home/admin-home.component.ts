@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {SidenavService} from "../../services/sidenav.service";
 
 @Component({
   selector: 'app-admin-home',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-home.component.css']
 })
 export class AdminHomeComponent {
+  isOpen$ = this.sidenavService.isOpen$;
 
+  constructor(private sidenavService: SidenavService) {
+  }
 }

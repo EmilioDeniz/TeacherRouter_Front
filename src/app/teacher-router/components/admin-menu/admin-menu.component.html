@@ -1,27 +1,18 @@
-<div class="menu-icon">
-  <button type="button" mat-button (click)="drawer.toggle()">
-    <mat-icon aria-hidden="false" aria-label="Menu icon" fontIcon="menu"></mat-icon>
+ <mat-sidenav class="sidenav" mode="side" opened="true">
+  <button class="admin-button" (click)="goToPage('create-user')" mat-raised-button>
+    Registrar Usuario
   </button>
-</div>
-
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button class="admin-button" (click)="goToPage('user-manager')" mat-raised-button>
-      Registrar Usuario
-    </button>
-    <button class="admin-button" (click)="showFiller = !showFiller" mat-raised-button>
-      Lista de Materiales
-    </button>
-    <button class="admin-button" (click)="showFiller = !showFiller" mat-raised-button>
-      Lista de Centros
-    </button>
-    <button class="admin-button" (click)="showFiller = !showFiller" mat-raised-button>
-      Gestionar Usuarios
-    </button>
-    <button class="admin-button" (click)="showFiller = !showFiller" mat-raised-button>
-      Gestionar Rutas
-    </button>
-  </mat-drawer>
-</mat-drawer-container>
+  <button class="admin-button" (click)="goToPage('items-manager')" mat-raised-button>
+    Lista de Materiales
+  </button>
+  <button class="admin-button" (click)="goToPage('center-manager')" mat-raised-button>
+    Lista de Centros
+  </button>
+  <button class="admin-button" (click)="goToPage('user-manager')" mat-raised-button>
+    Gestionar Usuarios
+  </button>
+  <button class="admin-button" (click)="goToPage('route-manager')" mat-raised-button>
+    Gestionar Rutas
+  </button>
+</mat-sidenav>
 

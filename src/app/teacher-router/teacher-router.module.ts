@@ -11,6 +11,9 @@ import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
 import { AdminMenuComponent } from './components/admin-menu/admin-menu.component';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module'
+import { HeaderComponent } from './components/header/header.component';
+import { MapComponent } from './components/map/map.component';
+
 
 
 @NgModule({
@@ -22,11 +25,14 @@ import { AngularMaterialModule } from 'src/app/angular-material/angular-material
     ItemsManagerComponent,
     AdminHomeComponent,
     TeacherHomeComponent,
-    AdminMenuComponent
+    AdminMenuComponent,
+    HeaderComponent,
+    MapComponent
   ],
   exports: [
     AdminMenuComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,

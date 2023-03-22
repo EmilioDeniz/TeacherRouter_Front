@@ -1,3 +1,4 @@
-<div class="menu">
-  <app-admin-menu></app-admin-menu>
+<app-header></app-header>
+<div class="sidenav-content">
+  <app-admin-menu *ngIf="isOpen$ | async"></app-admin-menu>
 </div>
