@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <header></header>
-        <div class = "button-container">
-            <input type="button">
-            <input type="button">
-            <input type="button">
-            <input type="button">
-            <input type="button">
-        </div>
+<app-header></app-header>
+<div class="sidenav-content">
+  <app-admin-menu *ngIf="isOpen$ | async"></app-admin-menu>
+</div>
 
-        <div class="map-container">
-            <map></map>
-        </div>
-    </body>
-</html>
