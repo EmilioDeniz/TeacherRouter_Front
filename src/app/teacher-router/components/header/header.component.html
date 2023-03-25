@@ -4,7 +4,6 @@
 
     <a href=""> <img src="../../../../assets/images/Logo.png" alt="" title="Home"></a>
 
-
     <div id="login">
 
       <a href="" class="text"> Iniciar sesión</a>
@@ -15,7 +14,12 @@
 </header>
 
 <header>
-  <a href="" id="burger"> <img src="../../../../assets/images/Burger menu.png" alt=""></a>
+
+  <button (click)="toggleSidenav()" mat-button>
+    <mat-icon fontIcon="menu"></mat-icon>
+  </button>
+
+
   <div id="header_elements">
 
 

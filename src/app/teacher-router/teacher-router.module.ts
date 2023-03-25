@@ -9,6 +9,8 @@ import { RouteManagerComponent } from './pages/route-manager/route-manager.compo
 import { ItemsManagerComponent } from './pages/items-manager/items-manager.component';
 import { AdminHomeComponent } from './pages/admin-home/admin-home.component';
 import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
+import { AdminMenuComponent } from './components/admin-menu/admin-menu.component';
+import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module'
 import { HeaderComponent } from './components/header/header.component';
 import { MapComponent } from './components/map/map.component';
 
@@ -22,15 +24,19 @@ import { MapComponent } from './components/map/map.component';
     ItemsManagerComponent,
     AdminHomeComponent,
     TeacherHomeComponent,
+    AdminMenuComponent,
     HeaderComponent,
     MapComponent
   ],
+  exports: [
+    AdminMenuComponent,
+    AdminHomeComponent,
+    HeaderComponent
+  ],
   imports: [
     CommonModule,
-    TeacherRouterRoutingModule
-  ],
-  exports: [
-    HeaderComponent
+    TeacherRouterRoutingModule,
+    AngularMaterialModule
   ]
 })
 export class TeacherRouterModule { }

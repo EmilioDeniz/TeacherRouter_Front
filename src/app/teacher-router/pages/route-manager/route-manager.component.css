@@ -1,0 +1,10 @@
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 1rem;
+}
+
+.generalContainer {
+    display: block;
+    align-items: center;
+}
