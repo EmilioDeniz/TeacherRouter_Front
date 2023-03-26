@@ -13,6 +13,8 @@ import { AdminMenuComponent } from './components/admin-menu/admin-menu.component
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module'
 import { HeaderComponent } from './components/header/header.component';
 import { MapComponent } from './components/map/map.component';
+import { AdminSidenavComponent } from './components/admin-sidenav/admin-sidenav.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { MapComponent } from './components/map/map.component';
     TeacherHomeComponent,
     AdminMenuComponent,
     HeaderComponent,
-    MapComponent
+    MapComponent,
+    AdminSidenavComponent
   ],
   exports: [
     AdminMenuComponent,
@@ -36,7 +39,8 @@ import { MapComponent } from './components/map/map.component';
   imports: [
     CommonModule,
     TeacherRouterRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class TeacherRouterModule { }
