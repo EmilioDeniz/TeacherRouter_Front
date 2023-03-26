@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+
+import { AuthService } from "../../services/auth.service";
 
 
 @Component({
@@ -12,17 +12,18 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
 
    /* AQUI DEFINIMOS LA TEMATICA DE NUESTRA IMAGEN*/
-   styleImage = 'travel';
+   styleImage = 'routes';
 
    form!: FormGroup;
-   constructor(private formBuilder: FormBuilder){
+   constructor(private formBuilder: FormBuilder,
+                private authService: AuthService){
    }
    ngOnInit(): void {
      this.buildForm();
    }
    private buildForm(): any {
      this.form = this.formBuilder.group({
-       email: ['', [Validators.required, Validators.email]],
+       username: ['', [Validators.required,]],
        password: ['', [Validators.required, Validators.minLength(6)]],
          });
    }
@@ -37,11 +38,17 @@ export class LoginComponent {
        position: 'relative',
      };
    }
+
    login(event: Event): any {
      event.preventDefault();
      if (this.form.valid) {
-       const value = this.form.value;
-       console.log(`'%c'USER: ${value.email} - PASSWORD: ${value.password}`, 'background: #222; color: #bada55');
+      const {email, password} = this.form.value;
+
+      this.authService.login(email, password)
+      .subscribe( resp => {
+        console.log(resp);
+        
+      })
      }
    }
 
