@@ -1,0 +1,72 @@
+map-steppper{
+  width: 100vw;
+  padding:0;
+}
+
+map-stepper map-step{
+  width: 95vw;
+  padding: 0;
+}
+
+:host ::ng-deep .mat-horizontal-content-container {
+  padding:0 !important;
+  background-color: #F4F2EF;
+}
+
+#main{
+  width: 90vw;
+  height: 92.5vh;
+  margin: 0 auto 0 auto;
+}
+
+#arrive-text{
+  border: 2px solid #373737;
+  padding: 1vh 1vw;
+  border-radius: 10px;
+}
+h1{
+  text-align: center;
+  margin: 2% auto auto 0;
+}
+
+#app-map{
+  border: 2px solid #373737;
+  height: 50vh;
+  border-radius: 20px;
+}
+
+#arrive-button{
+  width: 50%;
+  margin: 5% auto;
+}
+
+#arrive-button button{
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid #373737;
+  border-radius: 8px;
+  padding: 1vh 1vw;
+}
+
+#buttons{
+  margin: 5% auto;
+
+  display: flex;
+  justify-content: space-between;
+}
+#buttons button{
+  background-color: #7596F5;
+  padding: 1vh 6vw;
+  border: 2px solid #373737;
+  border-radius: 12px;
+}
+
+#finish{
+  width: 70%;
+  background-color: #F57E7A;
+  text-align: center;
+  margin: 5% auto 0 auto;
+  padding: 1.5vh 0;
+  border: 2px solid #373737;
+  border-radius: 10px;
+}
