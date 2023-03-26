@@ -15,6 +15,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { MapComponent } from './components/map/map.component';
 import { AdminSidenavComponent } from './components/admin-sidenav/admin-sidenav.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -30,7 +31,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     AdminMenuComponent,
     HeaderComponent,
     MapComponent,
-    AdminSidenavComponent
+    AdminSidenavComponent,
+    FooterComponent
   ],
   exports: [
     AdminMenuComponent,
