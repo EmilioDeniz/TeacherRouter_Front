@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="header_noLogged">
 
   <div id="header_elements">
 
@@ -11,9 +11,12 @@
         <img src="../../../../assets/images/Logo perfil.png" alt="" title="Profile"></a>
     </div>
   </div>
+
+  <button (click)="switch()">switch</button>
+
 </header>
 
-<header>
+<header *ngIf="header_Logged">
 
   <button (click)="toggleSidenav()" mat-button>
     <mat-icon fontIcon="menu"></mat-icon>
@@ -38,6 +41,7 @@
       <a href="" class="text" id="profile_text"> Mi perfil</a>
       <a href="">
         <img src="../../../../assets/images/Logo perfil.png" alt="" title="Profile"></a>
+      </div>
     </div>
-  </div>
+    <button (click)="switch()">switch</button>
 </header>
