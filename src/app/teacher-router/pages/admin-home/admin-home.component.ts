@@ -14,4 +14,8 @@ export class AdminHomeComponent {
 
   constructor(private sidenavService: SidenavService, private router: Router) {
   }
+
+  goToPage(pageName: string): void {
+    this.router.navigate([`${pageName}`]);
+  }
 }
