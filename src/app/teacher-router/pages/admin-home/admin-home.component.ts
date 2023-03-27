@@ -70,6 +70,6 @@ export class AdminHomeComponent {
   }
 
   goToPage(pageName: string): void {
-    this.router.navigate([`${pageName}`]);
+    this.router.navigate([`main/${pageName}`]);
   }
 }
