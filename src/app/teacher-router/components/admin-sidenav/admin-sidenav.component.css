@@ -1,0 +1,40 @@
+.user-data {
+  height: 100%;
+}
+.field-name {
+  color: #ffffff;
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+#sidenav {
+  width: 250px;
+}
+
+#divider {
+  margin: 10px 0;
+}
+
+#search {
+  width: 100%;
+}
+
+#day-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-button {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin: 4px 4px;
+}
+
+.selected {
+  background-color: green;
+}

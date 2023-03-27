@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { TeacherRouterRoutingModule } from './teacher-router-routing.module';
 import { CreateUserComponent } from './pages/create-user/create-user.component';
@@ -14,7 +14,6 @@ import { AdminMenuComponent } from './components/admin-menu/admin-menu.component
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module'
 import { HeaderComponent } from './components/header/header.component';
 import { MapComponent } from './components/map/map.component';
-
 
 
 
@@ -32,16 +31,23 @@ import { MapComponent } from './components/map/map.component';
     MapComponent
   ],
   exports: [
-    AdminMenuComponent,
+    CreateUserComponent,
+    UserManagerComponent,
+    CenterManagerComponent,
+    RouteManagerComponent,
+    ItemsManagerComponent,
     AdminHomeComponent,
-    HeaderComponent
+    TeacherHomeComponent,
+    AdminMenuComponent,
+    HeaderComponent,
+    MapComponent
   ],
   imports: [
     CommonModule,
     TeacherRouterRoutingModule,
     AngularMaterialModule,
-    FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class TeacherRouterModule { }

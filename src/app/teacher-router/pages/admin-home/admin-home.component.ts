@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {SidenavService} from "../../services/sidenav.service";
+import { SidenavService } from "../../services/sidenav.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-admin-home',
@@ -8,7 +9,9 @@ import {SidenavService} from "../../services/sidenav.service";
 })
 export class AdminHomeComponent {
   isOpen$ = this.sidenavService.isOpen$;
+  lineChart: any;
+  doughnutChart: any;
 
-  constructor(private sidenavService: SidenavService) {
+  constructor(private sidenavService: SidenavService, private router: Router) {
   }
 }

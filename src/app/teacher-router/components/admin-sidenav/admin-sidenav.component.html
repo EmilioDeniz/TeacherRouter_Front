@@ -1,0 +1,29 @@
+<mat-sidenav id="sidenav" #sidenav mode="side" opened autosize="true">
+  <div class="user-data">
+    <mat-form-field id="search">
+      <input matInput [formControl]="searchControl" [matAutocomplete]="auto" placeholder="Buscar">
+    </mat-form-field>
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let user of filteredUsers | async" [value]="user.name" (click)="selectUser(user)">
+        {{user.name}}
+      </mat-option>
+    </mat-autocomplete>
+
+    <div *ngIf="selectedUser">
+      <h2 class="field-name">Nombre</h2>
+      <p>&nbsp;&nbsp;{{selectedUser.name}}</p>
+      <h2 class="field-name">Email</h2>
+      <p>&nbsp;&nbsp;{{selectedUser.email}}</p>
+      <h2 class="field-name">ID</h2>
+      <p>&nbsp;&nbsp;ID: {{selectedUser.id}}</p>
+      <h2 class="field-name">Días de trabajo</h2>
+      <div id="day-button-container">
+        <div *ngFor="let day of days">
+          <button class="day-button" [ngClass]="{'selected': day.selected}" (click)="toggleDay(day)">{{day.name}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</mat-sidenav>

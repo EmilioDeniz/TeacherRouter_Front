@@ -12,7 +12,6 @@ export class AuthService {
 
   login( email: string, password: string ) {
 
-    //const url  = `${ this.baseUrl }/auth`;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'

@@ -28,7 +28,7 @@ const routes: Routes = [
         path: 'route-manager', component: RouteManagerComponent
       },
       {
-        path:'teacher-home', component: TeacherHomeComponent 
+        path:'teacher-home', component: TeacherHomeComponent
       },
       {
         path:'user-manager', component: UserManagerComponent
