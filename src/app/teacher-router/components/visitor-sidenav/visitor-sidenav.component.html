@@ -1,1 +1,5 @@
-<p>visitor-sidenav works!</p>
+<mat-sidenav #sidenav mode="side" opened autosize="true">
+    <ng-container *ngFor="let centro in centres">
+        <app-center-label [centreName]="centro.centreName" [street]="centro.street"></app-center-label>
+    </ng-container>
+</mat-sidenav>

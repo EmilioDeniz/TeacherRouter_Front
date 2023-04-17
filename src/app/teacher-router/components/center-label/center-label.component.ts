@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-center-label',
@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./center-label.component.css']
 })
 export class CenterLabelComponent {
-  centreName!:string;
-  street!:string;
+ @Input() centreName!:string;
+ @Input() street!:string;
 }
