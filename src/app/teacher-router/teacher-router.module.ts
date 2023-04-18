@@ -16,6 +16,8 @@ import { RouteManagerComponent } from './pages/route-manager/route-manager.compo
 import { UserManagerComponent } from './pages/user-manager/user-manager.component';
 import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
 import { TeacherRouterRoutingModule } from './teacher-router-routing.module';
+import { CenterLabelComponent } from './components/center-label/center-label.component';
+import { VisitorSidenavComponent } from './components/visitor-sidenav/visitor-sidenav.component';
 
 
 
@@ -32,7 +34,9 @@ import { TeacherRouterRoutingModule } from './teacher-router-routing.module';
     HeaderComponent,
     MapComponent,
     AdminSidenavComponent,
-    FooterComponent
+    FooterComponent,
+    CenterLabelComponent,
+    VisitorSidenavComponent
   ],
   exports: [
     AdminMenuComponent,
