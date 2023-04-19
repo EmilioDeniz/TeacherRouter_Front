@@ -24,7 +24,7 @@
 .login-header {
     padding: 20px;
     font-size: 2.5rem;
-    color: #0c1066;
+    color: #d9631a;
     letter-spacing: 0.2rem;
     font-weight: bold;
     animation: fadein 1.75s ease-in-out;
@@ -80,7 +80,7 @@
     margin-top: 10px;
 }
 
-@media screen and (max-width: 959px) {
+@media screen and (min-width: 959px) {
     .login-aside {
         display: none;
     }
