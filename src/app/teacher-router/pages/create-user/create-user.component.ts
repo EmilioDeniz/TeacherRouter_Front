@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Teacher } from '../../interfaces/teacher.interface';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
-export class CreateUserComponent {
+export class CreateUserComponent implements OnInit {
   isEdit: boolean = false;
   hide: boolean = true;
-
   teacher: Teacher = {
     id: '',
     name: '',
@@ -18,7 +18,18 @@ export class CreateUserComponent {
     schedule: ''
   }
 
-  constructor(){}
+  constructor(private router: Router){}
+  ngOnInit(): void {
+    this.getToken();
+  }
+
+  getToken (){
+    if(localStorage.getItem('teacher-token')!){
+      alert('tienes token')
+    }else{
+      this.router.navigateByUrl('');
+    }
+  }
 
   guardar(): void{
     //campos obligatorios
