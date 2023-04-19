@@ -44,10 +44,10 @@ export class LoginComponent {
   login(event: Event): any {
     event.preventDefault();
     if (this.form.valid) {
-      const { email, password } = this.form.value;
+      const { username, password } = this.form.value;    
 
       this.router.navigateByUrl('/main')
-      this.authService.login(email, password)
+      this.authService.login(username, password)
         .subscribe(resp => {
           console.log(resp);
         });

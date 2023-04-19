@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login( email: string, password: string ) {
+  login( username: string, password: string ) {
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -18,7 +18,7 @@ export class AuthService {
       })
     };
     const url = 'http://138.68.130.127:5000/login'
-    const body = { email, password };
+    const body = { username, password };
 
     return this.http.post<any>( url, body, httpOptions )
       .pipe(
