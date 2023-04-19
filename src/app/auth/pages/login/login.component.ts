@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
-=======
-import { Router } from '@angular/router'
->>>>>>> 4b3f5a7213716e0231386de56af7bcfee0f7753b
 
 import { AuthService } from "../../services/auth.service";
 
@@ -29,8 +25,8 @@ export class LoginComponent {
   }
   private buildForm(): any {
     this.form = this.formBuilder.group({
-      username: ['', [Validators.required,]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['admin', [Validators.required,]],
+      password: ['1234', [Validators.required, Validators.minLength(4)]],
     });
   }
   /* ESTA FUNCION ES ACTIVADA POR EL NGSTYLE */
@@ -51,10 +47,10 @@ export class LoginComponent {
       const { email, password } = this.form.value;
 
       this.router.navigateByUrl('/main')
-      // this.authService.login(email, password)
-      //   .subscribe(resp => {
-      //     console.log(resp);
-      //   });
+      this.authService.login(email, password)
+        .subscribe(resp => {
+          console.log(resp);
+        });
     }
   }
 

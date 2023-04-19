@@ -23,9 +23,11 @@ export class AuthService {
     return this.http.post<any>( url, body, httpOptions )
       .pipe(
         tap( resp => {
-          if ( resp.ok ) {
-            localStorage.setItem('token', resp.token! );
-          }
+          // if ( resp.ok ) {
+          //   localStorage.setItem('token', resp.token! );
+          // }
+          console.log('SERVICE: '+resp);
+          
         }),
         map( resp => resp.ok ),
         catchError( err => of(err.error.msg) )
