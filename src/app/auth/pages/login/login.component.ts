@@ -50,19 +50,11 @@ export class LoginComponent {
     if (this.form.valid) {
       const { email, password } = this.form.value;
 
-<<<<<<< HEAD
-=======
       this.router.navigateByUrl('/main')
->>>>>>> 4b3f5a7213716e0231386de56af7bcfee0f7753b
       // this.authService.login(email, password)
       //   .subscribe(resp => {
       //     console.log(resp);
       //   });
-<<<<<<< HEAD
-
-      this.router.navigateByUrl('main')
-=======
->>>>>>> 4b3f5a7213716e0231386de56af7bcfee0f7753b
     }
   }
 
