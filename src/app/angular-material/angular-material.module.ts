@@ -37,6 +37,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import {MatSliderModule} from '@angular/material/slider';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import {MatStepperModule} from "@angular/material/stepper";
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     MatAutocompleteModule,
     MatProgressBarModule,
     MatSliderModule,
-    TextFieldModule
+    TextFieldModule,
+    MatStepperModule
   ]
 })
 export class AngularMaterialModule { }

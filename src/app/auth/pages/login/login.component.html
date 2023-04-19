@@ -1,27 +1,20 @@
-<div class="container-fluid mt-5"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutAlign="center center"
-     fxLayoutGap="0"
-     fxLayoutGap.xs="0">
+<div class="container-fluid mt-5" fxLayout fxLayout.xs="column" fxLayoutAlign="center center" fxLayoutGap="0"
+  fxLayoutGap.xs="0">
   <div class="login-card mat-elevation-z8 mb-5" fxFlex="45%">
-    <main class="login-content"
-          fxLayout="column"
-          fxLayoutAlign="center center">
+    <main class="login-content" fxLayout="column" fxLayoutAlign="center center">
       <span class="login-header">Login</span>
       <!-- login form -->
       <form [formGroup]="form" class="login-form align-items-center" fxLayout="column" (ngSubmit)="login($event)">
+
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Email</mat-label>
-          <input matInput placeholder="Type your email" type="email" formControlName='email'>
+          <mat-label>username</mat-label>
+          <input matInput placeholder="Type your usename" type="text" formControlName='username'>
           <mat-icon matPrefix>mail_outline</mat-icon>
-          <mat-error *ngIf="form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="form.controls['email'].hasError('required')">
-            Email is <strong>required</strong>
+          <mat-error *ngIf="form.controls['username'].hasError('required')">
+            Username is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Password</mat-label>
           <input matInput placeholder="Type your password" type="password" formControlName='password'>
@@ -30,21 +23,20 @@
             Password is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button color="warn" type="submit" >Ingresar</button>
+
+        <button id="login-button" mat-raised-button color="warn" type="submit">Ingresar</button>
       </form>
-      <div class="mt-3">
+      <div id="forgot-password-id">
         <a class="forgot-link" routerLink="/forgot-password">forgot password?</a>
       </div>
     </main>
 
   </div>
-  <div class="login-card login-content mat-elevation-z8" 
-          fxFlex=45%
-          fxLayout="column"
-          fxLayoutAlign="end start"
-          [ngStyle]="unsplashClass()">
-      <div class="login-aside-overlay"></div>
-      <h1 class="login-welcome-text">Welcome!</h1>
-      <hr class="login-aside-hr">
+
+  <div class="loginImage login-card login-content mat-elevation-z8" fxFlex=45% fxLayout="column" fxLayoutAlign="end start"
+    [ngStyle]="unsplashClass()">
+    <div class="loginImage login-aside-overlay"></div>
+    <h1 class="loginImage login-welcome-text">Welcome!</h1>
+    <hr class="loginImage login-aside-hr">
   </div>
 </div>
