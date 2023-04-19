@@ -50,10 +50,6 @@ export class LoginComponent {
 
       this.router.navigateByUrl('/main')
       this.authService.login(username, encryptedPassword)
-        .subscribe(resp => {
-          console.log(resp);
-        });
     }
   }
-
 }
