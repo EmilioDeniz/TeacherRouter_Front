@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+<<<<<<< HEAD
 import { Router } from '@angular/router';
+=======
+import { Router } from '@angular/router'
+>>>>>>> 4b3f5a7213716e0231386de56af7bcfee0f7753b
 
 import { AuthService } from "../../services/auth.service";
 
@@ -46,12 +50,19 @@ export class LoginComponent {
     if (this.form.valid) {
       const { email, password } = this.form.value;
 
+<<<<<<< HEAD
+=======
+      this.router.navigateByUrl('/main')
+>>>>>>> 4b3f5a7213716e0231386de56af7bcfee0f7753b
       // this.authService.login(email, password)
       //   .subscribe(resp => {
       //     console.log(resp);
       //   });
+<<<<<<< HEAD
 
       this.router.navigateByUrl('main')
+=======
+>>>>>>> 4b3f5a7213716e0231386de56af7bcfee0f7753b
     }
   }
 
