@@ -18,10 +18,13 @@
 
 <header *ngIf="header_Logged">
 
-  <button (click)="toggleSidenav()" mat-button>
+  <button (click)="toggleSidenav()" *ngIf="getCurrentRoute() !== '/route-manager'" mat-button>
     <mat-icon fontIcon="menu"></mat-icon>
   </button>
 
+  <button (click)="toggleVisitorSidenav()" *ngIf="getCurrentRoute() === '/route-manager'" mat-button>
+    <mat-icon fontIcon="menu"></mat-icon>
+  </button>
 
   <div id="header_elements">
 
