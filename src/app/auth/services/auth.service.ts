@@ -14,7 +14,6 @@ export class AuthService {
   login( username: string, password: string ) {
 
     const url = 'http://138.68.130.127:5000/login'
-
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
@@ -22,7 +21,8 @@ export class AuthService {
     return this.http.post<any>( url, formData )
       .pipe(
         tap( resp => {
-          console.log('SERVICE: '+resp);
+          localStorage.setItem('teacher-token', resp.token);
+          
         }),
         map( resp => resp.ok ),
         catchError( err => of(err.error.msg) )

@@ -27,7 +27,7 @@ export class LoginComponent {
   private buildForm(): any {
     this.form = this.formBuilder.group({
       username: ['admin', [Validators.required,]],
-      password: ['1234', [Validators.required, Validators.minLength(4)]],
+      password: ['1234', [Validators.required,]],
     });
   }
   /* ESTA FUNCION ES ACTIVADA POR EL NGSTYLE */
