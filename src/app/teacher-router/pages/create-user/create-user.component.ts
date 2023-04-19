@@ -8,6 +8,7 @@ import { Teacher } from '../../interfaces/teacher.interface';
 })
 export class CreateUserComponent {
   isEdit: boolean = false;
+  hide: boolean = true;
 
   teacher: Teacher = {
     id: '',
