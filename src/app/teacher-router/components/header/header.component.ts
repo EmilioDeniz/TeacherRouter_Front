@@ -1,38 +1,41 @@
 import { Component } from '@angular/core';
 import { SidenavService } from "../../services/sidenav.service";
-import { VisitorSidenavService } from '../../services/visitor-sidenav-service.service';
 import { Router } from '@angular/router';
-import { EventEmitter, Output} from '@angular/core'
+import { VisitorSidenavComponent } from '../visitor-sidenav/visitor-sidenav.component';
+import { ComponentFactoryResolver, Injector, ApplicationRef,EmbeddedViewRef } from '@angular/core';
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private sidenavService: SidenavService, private visitorSidenavService:VisitorSidenavService,private router: Router) {
+  constructor(private sidenavService: SidenavService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver,
+    private injector: Injector,
+    private appRef: ApplicationRef) {
   }
 
   header_noLogged: boolean = true;
   header_Logged: boolean = false;
 
-
-  @Output() visitorNextButtonClicked =new EventEmitter<void>()
-
   toggleSidenav() {
     this.sidenavService.toggle();
   }
 
+  switch() {
+    this.header_Logged = !this.header_Logged;
+    this.header_noLogged = !this.header_noLogged;
+  }
+
   toggleVisitorSidenav() {
-    this.visitorSidenavService.toggle();
+    const factory = this.componentFactoryResolver.resolveComponentFactory(VisitorSidenavComponent);
+    const componentRef = factory.create(this.injector);
+    this.appRef.attachView(componentRef.hostView);
+    const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    document.body.appendChild(domElem);
   }
 
-  switch(){
-    this.header_Logged=!this.header_Logged;
-    this.header_noLogged=!this.header_noLogged;
+  isAdmin() {
+    return false;
   }
-
-  getCurrentRoute() {
-    return this.router.url;
-  }
-  
 }
