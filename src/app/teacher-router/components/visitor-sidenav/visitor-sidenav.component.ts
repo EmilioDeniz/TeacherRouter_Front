@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { map, Observable, startWith } from "rxjs";
+
 
 export interface Centre {
   centreName: String
