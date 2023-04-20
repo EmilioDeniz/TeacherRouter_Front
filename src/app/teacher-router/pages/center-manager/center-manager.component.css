@@ -1,0 +1,124 @@
+.mat-mdc-radio-button.mat-accent {
+  --mdc-radio-unselected-hover-icon-color: #373737;
+  --mdc-radio-unselected-icon-color: #373737;
+  --mdc-radio-unselected-pressed-icon-color: #5b5b5b;
+  --mdc-radio-selected-hover-icon-color: #5b5b5b;
+  --mdc-radio-selected-icon-color: #5b5b5b;
+  --mat-mdc-radio-ripple-color: #373737;
+  --mat-mdc-radio-checked-ripple-color: #5b5b5b;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  margin-right: 10px;
+  background: #696969;
+  border-radius: 10px;
+}
+#content {
+  padding: 10vh 10vw 0 10vw;
+  height: 75vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search {
+  height: 8vh;
+}
+
+.centers-list-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.centers-list {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 62vh;
+}
+
+.search,
+.centers-list {
+  font-size: 1.2vw;
+  border: 2px solid #373737;
+  border-radius: 0.5vw;
+  box-sizing: border-box;
+  width: 35vw;
+  background-color: transparent;
+}
+
+.radio-label {
+  font-size: 1.2vw;
+  color: #373737;
+}
+
+.delete {
+  position: absolute;
+  width: 15%;
+  margin: 0 auto 0 auto;
+  bottom: 8%;
+  left: 19%;
+  height: 4vh;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+}
+.delete:hover {
+  background-color: wheat;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  height: 75vh;
+  justify-content: space-between;
+}
+.data-text {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.center-data {
+  font-size: 1.2vw;
+  border-radius: 0.5vw;
+  width: 100%;
+  height: 8vh;
+  border: 2px solid #373737;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.data-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.data-buttons button {
+  font-size: 1.2vw;
+  border-radius: 0.5vw;
+  width: 60%;
+  margin-top: 5vh;
+  height: 7.5vh;
+  border: 2px solid #373737;
+}
+
+.data-buttons button:hover {
+  cursor: pointer;
+}
+#add {
+  background-color: #7596f5;
+}
+#remove {
+  background-color: #f57e7a;
+}

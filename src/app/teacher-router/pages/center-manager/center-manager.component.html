@@ -1,1 +1,58 @@
-<p>center-manager works!</p>
+<div id="content">
+  <div class="centers-list-container">
+
+    <input type="text" placeholder="Buscar centro..." class="search">
+
+    <mat-radio-group class="centers-list" [(ngModel)]="selectedCenter">
+
+      <mat-radio-button class="center" *ngFor="let center of centers" [value]="center">
+
+        <label class="radio-label">{{center.Name}}</label>
+
+      </mat-radio-button>
+
+    </mat-radio-group>
+
+    <button *ngIf="selectedCenter.Name" (click)="emptyCenter()" class="delete">
+      Borrar selección
+    </button>
+
+  </div>
+
+  <div class="data">
+
+    <form (ngSubmit)="saveCenter()" [formGroup]="centerData" name="centerData">
+
+      <div class="data-text">
+
+        <input matInput type="text" placeholder="Nombre del centro" value={{selectedCenter.Name}}
+          formControlName="newName" (input)="modified = true" class="center-data" required>
+        <input type="text" placeholder="Localización" value={{selectedCenter.Location}} formControlName="newLocation"
+          (input)="modified = true" class="center-data" required>
+        <input type="text" placeholder="Dirección" value={{selectedCenter.Address}} formControlName="newAddress"
+          (input)="modified = true" class="center-data" required>
+        <input type="text" placeholder="Tipo" value={{selectedCenter.Type}} formControlName="newType"
+          (input)="modified = true" class="center-data" required>
+
+
+      </div>
+
+      <div class="data-buttons">
+        <button *ngIf="!selectedCenter.Name" type="submit" [disabled]="!modified || centerData.invalid" id="add">
+          {{selectedCenter.Name ? 'Editar centro' : 'Añadir centro'}}
+        </button>
+
+        <button *ngIf="selectedCenter.Name" type="submit" [disabled]="!modified || !centerData.dirty" id="add">
+          {{selectedCenter.Name ? 'Editar centro' : 'Añadir centro'}}
+        </button>
+
+        <button *ngIf="selectedCenter.Name" id="remove" (click)="deleteCenter()"
+          [disabled]="selectedCenter == null">Eliminar centro centro</button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
