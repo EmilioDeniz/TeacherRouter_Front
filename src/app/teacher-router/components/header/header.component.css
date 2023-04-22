@@ -61,8 +61,8 @@ img{
     display: none;
   }
   .text{
-    line-height: 2;
-    font-size: 5vw;
+    line-height: 3.2;
+    font-size: 3vw;
   }
   #login .text{
     margin-right: 18vw;
