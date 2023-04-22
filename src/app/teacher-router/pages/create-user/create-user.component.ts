@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Teacher } from '../../interfaces/teacher.interface';
-import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
-export class CreateUserComponent implements OnInit {
+export class CreateUserComponent {
   isEdit: boolean = false;
   hide: boolean = true;
   teacher: Teacher = {
@@ -18,18 +19,16 @@ export class CreateUserComponent implements OnInit {
     schedule: ''
   }
 
-  constructor(private router: Router){}
-  ngOnInit(): void {
-    this.getToken();
-  }
+  range:FormGroup = new FormGroup({
+    lunes: new FormControl<Date | null>(null),
+    martes: new FormControl<Date | null>(null),
+    miercoles: new FormControl<Date | null>(null),
+    jueves: new FormControl<Date | null>(null),
+    viernes: new FormControl<Date | null>(null),
+    sabado: new FormControl<Date | null>(null),
+  });
 
-  getToken (){
-    if(localStorage.getItem('teacher-token')!){
-      alert('tienes token')
-    }else{
-      this.router.navigateByUrl('');
-    }
-  }
+  constructor() { }  
 
   guardar(): void{
     //campos obligatorios
@@ -47,18 +46,7 @@ export class CreateUserComponent implements OnInit {
     }
   }
 
-  borrar(){
-
-  }
-
-  range:FormGroup = new FormGroup({
-    lunes: new FormControl<Date | null>(null),
-    martes: new FormControl<Date | null>(null),
-    miercoles: new FormControl<Date | null>(null),
-    jueves: new FormControl<Date | null>(null),
-    viernes: new FormControl<Date | null>(null),
-    sabado: new FormControl<Date | null>(null),
-  });
+  borrar(){  }
 
 
 }
