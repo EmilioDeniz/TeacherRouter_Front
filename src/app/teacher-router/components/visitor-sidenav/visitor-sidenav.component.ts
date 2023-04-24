@@ -1,46 +1,58 @@
-import { Component } from '@angular/core';
-
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { RouteService } from '../../services/route-service.service';
 
 export interface Centre {
-  centreName: String
-  street: String
-  visited: boolean
-  current: boolean
+  centreName: string;
+  street: string;
+  visited: boolean;
+  current: boolean;
 }
 
 @Component({
   selector: 'app-visitor-sidenav',
   templateUrl: './visitor-sidenav.component.html',
-  styleUrls: ['./visitor-sidenav.component.css']
+  styleUrls: ['./visitor-sidenav.component.css'],
+  providers: [RouteService] // Agregar el servicio a la lista de proveedores
 })
-export class VisitorSidenavComponent {
+export class VisitorSidenavComponent implements OnInit {
+  @Output() siguienteClicked = new EventEmitter();
+  centros: Centre[];
 
-  centres: Centre[]
-
-  constructor() {
-    this.centres = [{ centreName: 'Colegio San Juan', street: 'Calle Mayor 12', visited: false, current: true },
-    { centreName: 'Instituto Montes', street: 'Avenida de la Constitución 25', visited: false, current: false },
-    { centreName: 'Escuela Nuestra Señora', street: 'Calle del Sol 8', visited: false, current: false }];
+  constructor(private routeService: RouteService) {
+    this.centros = [];
+  }
+  ngOnInit() {
+    this.centros = this.routeService.getCentres();
   }
 
-  isVisited(centre: Centre) {
-    return centre.visited
+  isVisited(centro: Centre) {
+    return centro.visited;
   }
 
-  isCurrent(centre: Centre) {
-    return centre.current
+  isCurrent(centro: Centre) {
+    return centro.current;
   }
 
-  toggleVisited(centre: Centre) {
-    centre.current != centre.current
-    centre.visited != centre.visited
+  toggleVisited(centro: Centre) {
+    centro.visited = !centro.visited;
+    centro.current = !centro.current;
 
-    const index = this.centres.indexOf(centre);
+    const index = this.centros.indexOf(centro);
+    if (index < this.centros.length - 1) {
+      const nextCentro = this.centros[index + 1];
+      nextCentro.current = true;
+    }
+  }
 
-    if (index < this.centres.length - 1) {
-      const nextCentre = this.centres[index + 1];
+  siguiente() {
+    var centroActual = this.centros.find((centro) => centro.current);
 
-      nextCentre.current = true;
+    if (centroActual) {
+      this.routeService.updateCentre(centroActual);
+      this.toggleVisited(centroActual);
+      this.siguienteClicked.emit(); // Emite el evento siguienteClicked
     }
   }
 }
+
+
