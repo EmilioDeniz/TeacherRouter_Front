@@ -75,7 +75,20 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-const routes: Routes &#x3D; [];
+const routes: Routes &#x3D; [
+  {
+    path: &#x27;auth&#x27;,
+    loadChildren: () &#x3D;&gt; &quot;import(&#x27;./auth/auth.module&#x27;).then( m &#x3D;&gt; m.AuthModule )&quot;
+  },
+  {
+    path: &#x27;main&#x27;,
+    loadChildren: () &#x3D;&gt; &quot;import(&#x27;./teacher-router/teacher-router.module&#x27;).then(m &#x3D;&gt; m.TeacherRouterModule)&quot;
+  },
+  {
+    path: &#x27;**&#x27;,
+    redirectTo: &#x27;auth&#x27;
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

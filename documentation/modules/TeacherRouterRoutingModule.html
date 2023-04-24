@@ -74,8 +74,45 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
+import { AdminHomeComponent } from &#x27;./pages/admin-home/admin-home.component&#x27;;
+import { CenterManagerComponent } from &#x27;./pages/center-manager/center-manager.component&#x27;;
+import { CreateUserComponent } from &#x27;./pages/create-user/create-user.component&#x27;;
+import { ItemsManagerComponent } from &#x27;./pages/items-manager/items-manager.component&#x27;;
+import { RouteManagerComponent } from &#x27;./pages/route-manager/route-manager.component&#x27;;
+import { TeacherHomeComponent } from &#x27;./pages/teacher-home/teacher-home.component&#x27;;
+import { UserManagerComponent } from &#x27;./pages/user-manager/user-manager.component&#x27;;
 
-const routes: Routes &#x3D; [];
+const routes: Routes &#x3D; [
+  {
+    path: &#x27;&#x27;,
+    children: [
+      {
+        path: &#x27;admin-home&#x27;, component: AdminHomeComponent
+      },
+      {
+        path: &#x27;center-manager&#x27;, component: CenterManagerComponent
+      },
+      {
+        path: &#x27;create-user&#x27;, component: CreateUserComponent
+      },
+      {
+        path: &#x27;items-manager&#x27;, component: ItemsManagerComponent
+      },
+      {
+        path: &#x27;route-manager&#x27;, component: RouteManagerComponent
+      },
+      {
+        path:&#x27;teacher-home&#x27;, component: TeacherHomeComponent
+      },
+      {
+        path:&#x27;user-manager&#x27;, component: UserManagerComponent
+      },
+      {
+        path:&#x27;**&#x27;, redirectTo: &#x27;admin-home&#x27;
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

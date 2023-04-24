@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Teacher } from '../../interfaces/teacher.interface';
+
+
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
@@ -8,7 +10,7 @@ import { Teacher } from '../../interfaces/teacher.interface';
 })
 export class CreateUserComponent {
   isEdit: boolean = false;
-
+  hide: boolean = true;
   teacher: Teacher = {
     id: '',
     name: '',
@@ -17,7 +19,16 @@ export class CreateUserComponent {
     schedule: ''
   }
 
-  constructor(){}
+  range:FormGroup = new FormGroup({
+    lunes: new FormControl<Date | null>(null),
+    martes: new FormControl<Date | null>(null),
+    miercoles: new FormControl<Date | null>(null),
+    jueves: new FormControl<Date | null>(null),
+    viernes: new FormControl<Date | null>(null),
+    sabado: new FormControl<Date | null>(null),
+  });
+
+  constructor() { }  
 
   guardar(): void{
     //campos obligatorios
@@ -35,18 +46,7 @@ export class CreateUserComponent {
     }
   }
 
-  borrar(){
-
-  }
-
-  range:FormGroup = new FormGroup({
-    lunes: new FormControl<Date | null>(null),
-    martes: new FormControl<Date | null>(null),
-    miercoles: new FormControl<Date | null>(null),
-    jueves: new FormControl<Date | null>(null),
-    viernes: new FormControl<Date | null>(null),
-    sabado: new FormControl<Date | null>(null),
-  });
+  borrar(){  }
 
 
 }

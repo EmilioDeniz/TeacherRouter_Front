@@ -18,6 +18,8 @@ import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.componen
 import { TeacherRouterRoutingModule } from './teacher-router-routing.module';
 import { ChangePasswordDialogComponent } from './components/change-password-dialog/change-password-dialog.component';
 import { AddUserDialogComponent } from './components/add-user-dialog/add-user-dialog.component';
+import { CenterLabelComponent } from './components/center-label/center-label.component';
+import { VisitorSidenavComponent } from './components/visitor-sidenav/visitor-sidenav.component';
 
 
 
@@ -36,7 +38,9 @@ import { AddUserDialogComponent } from './components/add-user-dialog/add-user-di
     AdminSidenavComponent,
     FooterComponent,
     ChangePasswordDialogComponent,
-    AddUserDialogComponent
+    AddUserDialogComponent,
+    CenterLabelComponent,
+    VisitorSidenavComponent,
   ],
   exports: [
     AdminMenuComponent,

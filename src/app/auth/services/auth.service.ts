@@ -6,26 +6,27 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
 
+export class AuthService {
+ 
   constructor(private http: HttpClient) { }
 
-  login( email: string, password: string ) {
+  get url () {
+    return 'http://104.248.171.221:5000/login';
+  }
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-    };
-    const url = 'http://138.68.130.127:5000/login'
-    const body = { email, password };
+  login( username: string, password: string ) {
 
-    return this.http.post<any>( url, body, httpOptions )
+    
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+
+    return this.http.post<any>( this.url, formData )
       .pipe(
         tap( resp => {
-          if ( resp.ok ) {
-            localStorage.setItem('token', resp.token! );
-          }
+          localStorage.setItem('teacher-token', resp.token);
+          
         }),
         map( resp => resp.ok ),
         catchError( err => of(err.error.msg) )
