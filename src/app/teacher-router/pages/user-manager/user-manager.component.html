@@ -1,1 +1,57 @@
-<p>user-manager works!</p>
+<app-header></app-header>
+<div class="main-box">
+
+  <div class="user-search">
+    <mat-form-field id="search">
+      <input matInput [formControl]="searchControl" placeholder="Buscar">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+      </ng-container>
+
+      <!-- Admin Column -->
+      <ng-container matColumnDef="isAdmin">
+        <th mat-header-cell *matHeaderCellDef> Admin </th>
+        <td mat-cell *matCellDef="let user"> {{user.isAdmin}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr class="rows" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" [ngClass]="{'selectedRow': row === selectedRow}">
+    </table>
+
+  </div>
+  <div class="user-data-box">
+    <img id="logo-perfil" src="assets/images/Logo perfil.png" alt="Imagen de perfil">
+    <mat-form-field class="forms">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Nombre" [value]="selectedRow.name">
+    </mat-form-field>
+
+    <mat-form-field class="forms" appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select [(value)]="selectedValue">
+        <mat-option value="one" *ngIf="!selectedRow.isAdmin">Profesor</mat-option>
+        <mat-option value="two" *ngIf="selectedRow.isAdmin">Administrador</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div id="day-button-container">
+      <div *ngFor="let day of days">
+        <button class="day-button" [ngClass]="{'selected': day.selected}" (click)="toggleDay(day)">{{day.name}}</button>
+      </div>
+    </div>
+
+    <button id="change-password-button" mat-raised-button color="primary" (click)="openChangePasswordDialog()">Cambiar contraseña</button>
+
+    <button id="add-user-button" mat-fab matTooltip="Registrar un  usuario" (click)="openAddUserDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+</div>
+<app-footer></app-footer>

@@ -16,6 +16,8 @@ import { RouteManagerComponent } from './pages/route-manager/route-manager.compo
 import { UserManagerComponent } from './pages/user-manager/user-manager.component';
 import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
 import { TeacherRouterRoutingModule } from './teacher-router-routing.module';
+import { ChangePasswordDialogComponent } from './components/change-password-dialog/change-password-dialog.component';
+import { AddUserDialogComponent } from './components/add-user-dialog/add-user-dialog.component';
 
 
 
@@ -32,7 +34,9 @@ import { TeacherRouterRoutingModule } from './teacher-router-routing.module';
     HeaderComponent,
     MapComponent,
     AdminSidenavComponent,
-    FooterComponent
+    FooterComponent,
+    ChangePasswordDialogComponent,
+    AddUserDialogComponent
   ],
   exports: [
     AdminMenuComponent,
