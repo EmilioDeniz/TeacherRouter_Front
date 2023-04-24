@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SidenavService } from "../../services/sidenav.service";
-import { Chart, registerables } from 'chart.js';
 import { Router } from "@angular/router";
+import { Chart, registerables } from 'chart.js';
 
 Chart.register(...registerables);
 
@@ -17,7 +17,6 @@ export class AdminHomeComponent {
 
   constructor(private sidenavService: SidenavService, private router: Router) {
   }
-
 
   ngOnInit() {
     this.lineChart = new Chart('lineChart', {
@@ -71,6 +70,6 @@ export class AdminHomeComponent {
   }
 
   goToPage(pageName: string): void {
-    this.router.navigate([`${pageName}`]);
+    this.router.navigate([`main/${pageName}`]);
   }
 }

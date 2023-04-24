@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Añadir usuario</h1>
+<div id="forms" mat-dialog-content>
+  <form [formGroup]="addUserForm">
+    <mat-form-field class="form-field">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput type="text" formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Confirmar contraseña</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-slide-toggle class="form-field">Administrador</mat-slide-toggle>
+
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="addUser()">Añadir usuario</button>
+</div>

@@ -32,6 +32,9 @@ const routes: Routes = [
       },
       {
         path:'user-manager', component: UserManagerComponent
+      },
+      {
+        path:'**', redirectTo: 'admin-home'
       }
     ]
   }

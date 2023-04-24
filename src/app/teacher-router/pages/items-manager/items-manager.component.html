@@ -1,1 +1,73 @@
-<p>items-manager works!</p>
+<div id="content">
+
+  <div class="material-list-container">
+
+    <input type="text" placeholder="Bucar material..." class="search">
+
+    <div>
+      <mat-selection-list class="materials-list" [(ngModel)]="selectedMaterials">
+        <mat-list-option class="material" *ngFor="let material of materials" [value]="material"
+          checkboxPosition="before">
+          {{material.Name}}
+        </mat-list-option>
+      </mat-selection-list>
+
+    </div>
+
+  </div>
+
+  <div class="data">
+
+    <form (ngSubmit)="saveMaterial()" [formGroup]="materialData" name="materialData">
+      <div class="data-text">
+
+        <input matInput type="text" placeholder="Nombre del nuevo material" value={{getLastMaterial().Name}}
+          formControlName="newName" (input)="modified = true" class="material-data" required>
+        <div>
+
+          <label for="newMaterial">Descripción del material:</label>
+          <textarea value={{getLastMaterial().Description}} formControlName="newDescription" (input)="modified = true"
+            class="material-data" id="description" required></textarea>
+        </div>
+      </div>
+
+      <div class="data-buttons">
+
+        <button *ngIf="!selectedMaterials || selectedMaterials.length == 0" type="submit"
+          [disabled]="!modified || materialData.invalid" id="add" class="data-action">
+          Añadir material
+        </button>
+
+        <button *ngIf="selectedMaterials && selectedMaterials.length > 0" type="submit"
+          [disabled]="!modified || !materialData.dirty" id="edit" class="data-action">
+          Editar material
+        </button>
+
+        <button *ngIf="(selectedMaterials && selectedMaterials.length > 0)" (click)="addToList()" [disabled]="!selectedMaterials == null"
+          id="add" class="data-action">
+          Añadir a la lista
+        </button>
+
+        <button *ngIf="selectedMaterials && selectedMaterials.length > 0" (click)="removeMaterial()"[disabled]="!selectedMaterials == null"
+          id="remove" class="data-action">
+          Eliminar material
+        </button>
+
+      </div>
+    </form>
+
+    <div class="used-material">
+      <div class="used-material-list">
+
+        <ul *ngFor="let usedMaterial of usedMaterials">
+          <li>
+            {{usedMaterial.Name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="usedMaterials.length > 0" class="remove-from-list-container">
+      <button (click)="emptyList()" class="remove-from-list">Borrar lista</button>
+    </div>
+  </div>
+</div>

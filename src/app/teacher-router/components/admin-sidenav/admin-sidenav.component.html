@@ -12,11 +12,11 @@
 
     <div *ngIf="selectedUser">
       <h2 class="field-name">Nombre</h2>
-      <p>&nbsp;&nbsp;{{selectedUser.name}}</p>
+      <p>&nbsp;&nbsp;{{selectedUser!.name}}</p>
       <h2 class="field-name">Email</h2>
-      <p>&nbsp;&nbsp;{{selectedUser.email}}</p>
+      <p>&nbsp;&nbsp;{{selectedUser!.email}}</p>
       <h2 class="field-name">ID</h2>
-      <p>&nbsp;&nbsp;ID: {{selectedUser.id}}</p>
+      <p>&nbsp;&nbsp;ID: {{selectedUser!.id}}</p>
       <h2 class="field-name">Días de trabajo</h2>
       <div id="day-button-container">
         <div *ngFor="let day of days">

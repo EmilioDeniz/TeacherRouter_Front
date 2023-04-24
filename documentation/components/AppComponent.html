@@ -205,8 +205,9 @@ export class AppComponent {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;h1&gt;este es mi componente app!!!!!!&lt;/h1&gt;
-
+        <pre class="line-numbers"><code class="language-html">&lt;div&gt;
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
 
@@ -242,8 +243,8 @@ export class AppComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><h1>este es mi componente app!!!!!!</h1></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'}];
+        var COMPONENT_TEMPLATE = '<div><div>  <router-outlet></router-outlet></div></div>'
+    var COMPONENTS = [{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminMenuComponent', 'selector': 'app-admin-menu'},{'name': 'AdminSidenavComponent', 'selector': 'app-admin-sidenav'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CenterLabelComponent', 'selector': 'app-center-label'},{'name': 'CenterManagerComponent', 'selector': 'app-center-manager'},{'name': 'CreateUserComponent', 'selector': 'app-create-user'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'ItemsManagerComponent', 'selector': 'app-items-manager'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MapComponent', 'selector': 'app-map'},{'name': 'RouteManagerComponent', 'selector': 'app-route-manager'},{'name': 'TeacherHomeComponent', 'selector': 'app-teacher-home'},{'name': 'UserManagerComponent', 'selector': 'app-user-manager'},{'name': 'VisitorSidenavComponent', 'selector': 'app-visitor-sidenav'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>
