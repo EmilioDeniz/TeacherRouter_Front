@@ -15,7 +15,6 @@ export interface Centre {
   providers: [RouteService] // Agregar el servicio a la lista de proveedores
 })
 export class VisitorSidenavComponent implements OnInit {
-  @Output() siguienteClicked = new EventEmitter();
   centros: Centre[];
 
   constructor(private routeService: RouteService) {
@@ -50,7 +49,6 @@ export class VisitorSidenavComponent implements OnInit {
     if (centroActual) {
       this.routeService.updateCentre(centroActual);
       this.toggleVisited(centroActual);
-      this.siguienteClicked.emit(); // Emite el evento siguienteClicked
     }
   }
 }
