@@ -8,3 +8,7 @@
     display: block;
     align-items: center;
 }
+
+.full-width {
+    width: 100%;
+}

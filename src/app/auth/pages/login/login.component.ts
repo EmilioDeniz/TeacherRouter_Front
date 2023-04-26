@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
 import { AuthService } from "../../services/auth.service";
 
@@ -25,8 +26,8 @@ export class LoginComponent {
   }
   private buildForm(): any {
     this.form = this.formBuilder.group({
-      username: ['', [Validators.required,]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['admin', [Validators.required,]],
+      password: ['1234', [Validators.required,]],
     });
   }
   /* ESTA FUNCION ES ACTIVADA POR EL NGSTYLE */
@@ -44,14 +45,12 @@ export class LoginComponent {
   login(event: Event): any {
     event.preventDefault();
     if (this.form.valid) {
-      const { email, password } = this.form.value;
+      const { username, password } = this.form.value;
+      const encryptedPassword = CryptoJS.SHA256(password).toString();
 
-      this.router.navigateByUrl('/main')
-      // this.authService.login(email, password)
-      //   .subscribe(resp => {
-      //     console.log(resp);
-      //   });
+      this.authService.login(username, encryptedPassword).subscribe(()=> {
+        this.router.navigateByUrl('/main')
+      })
     }
   }
-
 }
