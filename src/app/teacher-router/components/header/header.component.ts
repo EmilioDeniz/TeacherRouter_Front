@@ -50,6 +50,10 @@ export class HeaderComponent {
   }
 
   isAdmin() {
-    return false;
+    return true;
+  }
+
+  get isRouterManager() {
+    return this.router.url === '/router-manager';
   }
 }
