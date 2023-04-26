@@ -20,7 +20,6 @@ import { CenterLabelComponent } from './components/center-label/center-label.com
 import { VisitorSidenavComponent } from './components/visitor-sidenav/visitor-sidenav.component';
 
 
-
 @NgModule({
   declarations: [
     CreateUserComponent,

@@ -18,14 +18,11 @@
 
 <header *ngIf="header_Logged">
 
-  <button (click)="toggleSidenav()" mat-button>
+  <button (click)="isAdmin() ? toggleSidenav() : toggleVisitorSidenav()" mat-button>
     <mat-icon fontIcon="menu"></mat-icon>
   </button>
-
-
+  
   <div id="header_elements">
-
-
     <div id="teacher_elements">
 
 

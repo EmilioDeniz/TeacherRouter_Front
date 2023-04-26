@@ -1,5 +1,5 @@
-
 import { Component, OnInit } from '@angular/core';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -8,29 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
-  map!: google.maps.Map;
+  map!: L.Map;
 
   constructor() { }
 
-  ngOnInit(): void {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const center = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        const mapOptions: google.maps.MapOptions = {
-          center: center,
-          zoom: 15
-        };
-        this.map = new google.maps.Map(document.getElementById('map')!, mapOptions);
-      },
-      error => {
-        const center = new google.maps.LatLng(28.128081, -15.430006);
-        const mapOptions: google.maps.MapOptions = {
-          center: center,
-          zoom: 15
-        };
-        this.map = new google.maps.Map(document.getElementById('map')!, mapOptions);
-      }
-    );
+  ngOnInit() {
+    this.initMap();
+  }
+
+  initMap() {
+    this.map = L.map('map').setView([28.126033, -15.454997], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18
+    }).addTo(this.map);
   }
 
 }
+

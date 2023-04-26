@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-route-manager',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./route-manager.component.css']
 })
 export class RouteManagerComponent {
-
+  @Output() siguienteClicked = new EventEmitter<void>();
+  
+  siguiente() {
+    this.siguienteClicked.emit();
+  }
 }
