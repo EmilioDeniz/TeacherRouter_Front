@@ -21,7 +21,6 @@ import { AddUserDialogComponent } from './components/add-user-dialog/add-user-di
 import { CenterLabelComponent } from './components/center-label/center-label.component';
 import { VisitorSidenavComponent } from './components/visitor-sidenav/visitor-sidenav.component';
 
-
 @NgModule({
   declarations: [
     CreateUserComponent,
@@ -44,14 +43,14 @@ import { VisitorSidenavComponent } from './components/visitor-sidenav/visitor-si
   exports: [
     AdminMenuComponent,
     AdminHomeComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
     TeacherRouterRoutingModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class TeacherRouterModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-declare var google: any;
+//declare var google: any;
 
 @Component({
   selector: 'app-map',
@@ -8,21 +8,21 @@ declare var google: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  
-  map: google.maps.Map;
+
+  //map: google.maps.Map;
 
   constructor() { }
 
   ngOnInit() {
-    this.initMap();
+    //this.initMap();
   }
 
-  initMap() {
+  /*initMap() {
     this.map = new google.maps.Map(document.getElementById('map'), {
       center: { lat: 28.126033, lng: -15.454997 },
       zoom: 8
     });
-  }
+  }*/
 
 }
 
