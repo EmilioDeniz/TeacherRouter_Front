@@ -25,15 +25,15 @@ export class TeacherRouterService {
   }
 
   validarToken(): Observable<boolean> {
-    const url = `${environment.apiUrl}/auth/renew`;
+    const url = `${environment.apiUrl}/adminCheck`;
     const headers = new HttpHeaders()
       .set('x-token', localStorage.getItem('token') || '');
 
     return this.http.get<any>( url, {  headers } )
       .pipe(
         map( resp => {
-          localStorage.setItem('token', resp.token!);
-          
+          console.log('',resp);
+          localStorage.setItem('teacher-token', resp.token!);
           return resp.ok;
         }),
         catchError( err => of(false) )

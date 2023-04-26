@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-//declare var google: any;
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -9,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
-  //map: google.maps.Map;
+
+  map!: L.Map;
 
   constructor() { }
 
@@ -17,12 +17,14 @@ export class MapComponent implements OnInit {
     //this.initMap();
   }
 
-  /*initMap() {
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      center: { lat: 28.126033, lng: -15.454997 },
-      zoom: 8
-    });
-  }*/
+
+  initMap() {
+    this.map = L.map('map').setView([28.126033, -15.454997], 8);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18
+    }).addTo(this.map);
+  }
 
 }
 
