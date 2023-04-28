@@ -9,13 +9,16 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements OnInit {
 
-
   map!: L.Map;
 
   constructor() { }
-
+  
   ngOnInit() {
-    //this.initMap();
+    if (!this.map) {
+      setTimeout(() => {
+        this.initMap();
+      }, 1000); // delay for 1 second
+    }
   }
 
 
