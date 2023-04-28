@@ -27,6 +27,5 @@ export class MapComponent implements OnInit {
       maxZoom: 60
     }).addTo(this.map);
   }
-
 }
 
