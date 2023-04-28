@@ -1,11 +1,31 @@
 <app-header></app-header>
-<div class="sidenav-content">
-  <app-admin-menu *ngIf="isOpen$ | async"></app-admin-menu>
+<div id="main">
+  <div class="sidenav-content">
+    <app-admin-sidenav></app-admin-sidenav>
+  </div>
+  <div class="prueba">
+    <div id="center-data">
+      <div class="charts">
+        <div class="chart">
+          <h2>Centros visitados</h2>
+          <div>
+            <canvas id="lineChart"></canvas>
+          </div>
+        </div>
+        <div class="chart doughnut-chart">
+          <h2>Profesores</h2>
+          <div>
+            <canvas id="doughnutChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="button-container">
+      <button class="buttons" (click)="goToPage('user-manager')">Usuarios</button>
+      <button class="buttons" (click)="goToPage('center-manager')">Centros</button>
+      <button class="buttons" (click)="goToPage('items-manager')">Materiales</button>
+    </div>
+  </div>
 </div>
-<<<<<<< HEAD
-<div>
-  <app-map></app-map>
-</div>
-=======
 
->>>>>>> 6c973a29b52bb4398fdafcd7bdaa6f777e1003d1
+<app-footer></app-footer>

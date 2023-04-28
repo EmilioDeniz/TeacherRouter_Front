@@ -1,13 +1,16 @@
 .container-fluid {
     min-height: 100vh;
+    width: 100%;
 }
 
 .full-width {
     width: 100%;
+    padding-top: 10px;
 }
 
 .login-card {
     min-height: 80vh;
+    background-color: rgba(180, 179, 179, 0.663);
     animation: fadein 1s ease-in-out;
 }
 
@@ -17,16 +20,19 @@
     height: 80vh;
 }
 
+
+
 .login-header {
+    padding: 20px;
     font-size: 2.5rem;
-    color: #0c1066;
+    color: #ea4a05;
     letter-spacing: 0.2rem;
     font-weight: bold;
     animation: fadein 1.75s ease-in-out;
 }
 
 .login-form {
-    width: 80%;
+    width: 90%;
 }
 
 .forgot-link {
@@ -67,18 +73,25 @@
     animation: slideright 2s ease-out;
 }
 
-.login-button {
-    font-weight: 100;
-    width: 190px;
-    font-size: 1.1rem;
+#login-button {
+    height: 2.5rem;
 }
 
-@media screen and (max-width: 959px) {
-    .login-aside {
+#forgot-password-id {
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .login-card {
+        margin-top: 15%;
+        min-width: 85%;
+    }
+    
+    .loginImage {
         display: none;
-    }
-
-    .container-fluid {
-        width: 100%;
+        visibility: hidden;
     }
 }
+
+
+
