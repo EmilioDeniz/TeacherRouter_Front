@@ -1,9 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {MatDialog} from "@angular/material/dialog";
 import {MatTableDataSource} from "@angular/material/table";
 import {ChangePasswordDialogComponent} from "../../components/change-password-dialog/change-password-dialog.component";
 import {AddUserDialogComponent} from "../../components/add-user-dialog/add-user-dialog.component";
+import {MatPaginator, MatPaginatorIntl} from "@angular/material/paginator";
+
+class MatPaginatorIntlCro extends MatPaginatorIntl {
+  override itemsPerPageLabel = 'Usuarios por página:';
+  override nextPageLabel = 'Siguiente página';
+  override previousPageLabel = 'Página anterior';
+  override firstPageLabel = 'Primera página';
+  override lastPageLabel = 'Última página';
+
+  override getRangeLabel = function (page: any, pageSize: any, length: any) {
+    const start = page * pageSize + 1;
+    let end = (page + 1) * pageSize;
+    if (end > length) {
+      end = length;
+    }
+    return start + ' - ' + end + ' / ' + length;
+  };
+}
 
 interface User {
   name: string;
@@ -14,15 +32,24 @@ const USER_DATA: User[] = [
   { name: 'Juan', isAdmin: true},
   { name: 'Maria', isAdmin: false },
   { name: 'Pedro', isAdmin: false },
-  { name: 'Juan Manuel', isAdmin: false }
+  { name: 'Juan Manuel', isAdmin: false },
+  { name: 'Maria', isAdmin: false },
+  { name: 'Pedro', isAdmin: false },
+  { name: 'Juan Manuel', isAdmin: false },
+  { name: 'Maria', isAdmin: false },
+  { name: 'Pedro', isAdmin: false },
+  { name: 'Paco ', isAdmin: false }
 ];
 
 @Component({
   selector: 'app-user-manager',
   templateUrl: './user-manager.component.html',
-  styleUrls: ['./user-manager.component.css']
+  styleUrls: ['./user-manager.component.css'],
+  providers: [
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlCro }
+  ]
 })
-export class UserManagerComponent implements OnInit {
+export class UserManagerComponent implements OnInit, AfterViewInit {
   searchControl = new FormControl();
   // Ejemplo de datos de usuario
   dataSource = new MatTableDataSource<User>(USER_DATA);
@@ -45,18 +72,13 @@ export class UserManagerComponent implements OnInit {
     {name: 'D', selected: false}
   ];
 
-
-
   displayedColumns: string[] = ['name', 'isAdmin'];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
   constructor(public dialog: MatDialog) {
     this.selectedValue = this.selectedRow.isAdmin ? 'two' : 'one';
-    /* CONTRUCTOR SELECCIONADOR DE MATERIALES
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value))
-    );*/
   }
 
   ngOnInit() {
@@ -64,6 +86,10 @@ export class UserManagerComponent implements OnInit {
       // Actualizar el filtro de la fuente de datos de la tabla
       this.dataSource.filter = value;
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
 
   openChangePasswordDialog(): void {
@@ -92,6 +118,7 @@ export class UserManagerComponent implements OnInit {
     this.selectedValue = this.selectedRow.isAdmin ? 'two' : 'one';
   }
 
+
   /*
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -111,3 +138,4 @@ export class UserManagerComponent implements OnInit {
    */
 
 }
+

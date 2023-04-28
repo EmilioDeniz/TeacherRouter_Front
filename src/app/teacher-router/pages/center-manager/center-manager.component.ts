@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 interface Center {
   Id: number;
   Name: string;
@@ -17,10 +16,14 @@ interface Center {
 export class CenterManagerComponent {
 
   centerData!: FormGroup;
+  searchControl = new FormControl();
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.searchControl.valueChanges.subscribe(value => {
+      this.centers.filter = value;
+    });
     this.centerData = this.fb.group({
       newName: ['', Validators.required],
       newLocation: ['', Validators.required],
@@ -34,6 +37,7 @@ export class CenterManagerComponent {
       Address: '',
       Type: ''
     };
+
   }
 
   newCenter!: Center;
@@ -157,7 +161,7 @@ export class CenterManagerComponent {
   deleteCenter() {
     const index = this.centers.findIndex(center => center.Id === this.selectedCenter.Id);
     console.log(index)
-    this.centers.splice(index,1);
+    this.centers.splice(index, 1);
 
   }
 

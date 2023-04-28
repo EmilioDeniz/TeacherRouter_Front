@@ -55,6 +55,7 @@
 
 .search,
 .materials-list {
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
   font-size: 1.2vw;
   border: 2px solid #373737;
   border-radius: 0.5vw;
@@ -84,8 +85,10 @@
   border: 2px solid #373737;
   box-sizing: border-box;
   background-color: transparent;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
 }
 #description {
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
   height: 25vh;
   overflow-x: auto;
   text-align: justify;
@@ -103,6 +106,7 @@
   font-size: 0.8vw;
   border: 2px solid #373737;
   border-radius: 0.5vw;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
 }
 
 #add {
@@ -124,7 +128,7 @@
 
 .used-material-list{
   margin: auto;
-  max-height: 70%;
+  height: 20vh;
   width: 60%;
   overflow-y: auto;
   overflow-x: hidden;
@@ -132,6 +136,7 @@
 }
 
 .remove-from-list {
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
   padding: 1vh 1vw;
   font-size: 0.8vw;
   border: 2px solid #373737;
