@@ -13,7 +13,6 @@ export class MapComponent implements OnInit {
 
   constructor() { }
 
-
   ngOnInit() {
     if (!this.map) {
       setTimeout(() => {
