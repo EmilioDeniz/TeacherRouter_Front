@@ -1,7 +1,9 @@
 <div id="content">
   <div class="centers-list-container">
 
-    <input type="text" placeholder="Buscar centro..." class="search">
+    <mat-form-field>
+      <input matInput [formControl]="searchControl" placeholder="Buscar centro..." class="search">
+    </mat-form-field>
 
     <mat-radio-group class="centers-list" [(ngModel)]="selectedCenter">
 
