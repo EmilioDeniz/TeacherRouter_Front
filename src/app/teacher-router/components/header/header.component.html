@@ -18,7 +18,7 @@
 
 <header *ngIf="header_Logged">
   
-  <button (click)="(isAdmin() && !isRouterManager) ? toggleSidenav() : (isRouterManager ? toggleVisitorSidenav() : toggleSidenav())" mat-button>
+  <button (click)="(isAdmin() && !isTeacherHome) ? toggleSidenav() : (isTeacherHome ? toggleVisitorSidenav() : toggleSidenav())" mat-button>
     <mat-icon fontIcon="menu"></mat-icon>
   </button>
   

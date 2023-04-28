@@ -53,7 +53,7 @@ export class HeaderComponent {
     return true;
   }
 
-  get isRouterManager() {
-    return this.router.url === '/router-manager';
+  get isTeacherHome() {
+    return this.router.url === '/teacher-home';
   }
 }
