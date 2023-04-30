@@ -13,7 +13,6 @@ export class ChangePasswordDialogComponent {
 
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<ChangePasswordDialogComponent>) {
     this.changePasswordForm = this.fb.group({
-      currentPassword: ['', Validators.required],
       newPassword: ['', Validators.required],
       confirmNewPassword: ['', Validators.required]
     });

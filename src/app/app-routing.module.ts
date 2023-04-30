@@ -10,8 +10,6 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./teacher-router/teacher-router.module').then(m => m.TeacherRouterModule),
-    canActivate: [ ValidarTokenGuard ],
-    canLoad: [ ValidarTokenGuard ]
   },
   {
     path: '**',

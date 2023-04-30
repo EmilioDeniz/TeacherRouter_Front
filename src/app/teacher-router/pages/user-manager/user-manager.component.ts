@@ -1,11 +1,14 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Injectable, OnInit, ViewChild} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {MatDialog} from "@angular/material/dialog";
-import {MatTableDataSource} from "@angular/material/table";
+import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {ChangePasswordDialogComponent} from "../../components/change-password-dialog/change-password-dialog.component";
 import {AddUserDialogComponent} from "../../components/add-user-dialog/add-user-dialog.component";
 import {MatPaginator, MatPaginatorIntl} from "@angular/material/paginator";
+import * as colorette from "colorette";
+import {ThemePalette} from "@angular/material/core";
 
+@Injectable()
 class MatPaginatorIntlCro extends MatPaginatorIntl {
   override itemsPerPageLabel = 'Usuarios por página:';
   override nextPageLabel = 'Siguiente página';
@@ -53,15 +56,10 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
   searchControl = new FormControl();
   // Ejemplo de datos de usuario
   dataSource = new MatTableDataSource<User>(USER_DATA);
-  /* TS SELECCIONADOR DE MATERIALES
-  myControl = new FormControl();
-  options: string[] = ['Bolígrafos', 'Folios', 'Periódicos'];
-  filteredOptions: Observable<string[]>;
-  misItems: string[] = [];
-   */
   selectedRow: User = USER_DATA[0];
-  selectedValue: string;
-
+  isUserDeleted: boolean = false;
+  name: string = this.selectedRow.name;
+  role: boolean = this.selectedRow.isAdmin;
   days = [
     {name: 'L', selected: false},
     {name: 'M', selected: false},
@@ -71,16 +69,11 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     {name: 'S', selected: false},
     {name: 'D', selected: false}
   ];
-
   displayedColumns: string[] = ['name', 'isAdmin'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-
-  constructor(public dialog: MatDialog) {
-    this.selectedValue = this.selectedRow.isAdmin ? 'two' : 'one';
-  }
-
+  @ViewChild(MatTable) table!: MatTable<User>;
+  constructor(public dialog: MatDialog) {}
   ngOnInit() {
     this.searchControl.valueChanges.subscribe(value => {
       // Actualizar el filtro de la fuente de datos de la tabla
@@ -104,38 +97,56 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(AddUserDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        const newUser = {
+          name: result[0],
+          isAdmin: result[1]
+        };
+        this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin });
+      }
     });
-  }
-
-  toggleDay(day: any) {
-    day.selected = !day.selected;
+    this.table.renderRows();
   }
 
   selectRow(row: User) {
     this.selectedRow = row;
-    // Aquí puedes agregar código para mostrar o modificar la información del usuario seleccionado
-    this.selectedValue = this.selectedRow.isAdmin ? 'two' : 'one';
+    this.name = row.name;
+    this.role = this.selectedRow.isAdmin;
+    this.isUserDeleted = false;
   }
 
+  updateUser() {
+    if (!this.selectedRow) return;
 
-  /*
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
+    console.log(this.name);
+    console.log(this.selectedRow.isAdmin);
 
-    return this.options.filter((option) =>
-      option.toLowerCase().includes(filterValue)
-    );
+    this.selectedRow.name = this.name;
+    this.selectedRow.isAdmin = this.role;
+
+    this.dataSource.data = this.dataSource.data.map(user => {
+      if (user === this.selectedRow) {
+        return { ...user, name: this.name, isAdmin: this.role };
+      }
+      return user;
+    });
+    this.table.renderRows();
+    this.clearSelection();
   }
-   */
-
-  /*
-  addItem() {
-    if (this.myControl.value) {
-      this.misItems = [this.myControl.value];
-    }
+  deleteUser() {
+    const index = this.dataSource.data.indexOf(this.selectedRow);
+    this.dataSource.data.splice(index, 1);
+    this.dataSource._updateChangeSubscription();
+    this.clearSelection();
   }
-   */
+  toggleDay(day: any) {
+    day.selected = !day.selected;
+  }
 
+  clearSelection() {
+    this.name = '';
+    this.role = false;
+    this.isUserDeleted = true;
+  }
 }
 
