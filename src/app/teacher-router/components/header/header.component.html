@@ -17,11 +17,11 @@
 </header>
 
 <header *ngIf="header_Logged">
-  
-  <button (click)="(isAdmin() && !isTeacherHome) ? toggleSidenav() : (isTeacherHome ? toggleVisitorSidenav() : toggleSidenav())" mat-button>
+
+  <button (click)="toggleSidenav()" mat-button>
     <mat-icon fontIcon="menu"></mat-icon>
   </button>
-  
+
   <div id="header_elements">
     <div id="teacher_elements">
 
