@@ -18,6 +18,7 @@ header{
 
 #login, #profile{
   display: flex;
+  cursor: pointer;
 }
 
 .text{
@@ -41,6 +42,18 @@ img{
   width: 35%;
   display: flex;
   justify-content: space-between;
+}
+
+#logout{
+  font-size: 0.6vw;
+  text-decoration: none;
+  color: white;
+  margin: auto 3vw auto -3vw;
+}
+
+#logout:hover{
+  color: #7596F5;
+  cursor: pointer;
 }
 
 @media all and (max-width: 600px){

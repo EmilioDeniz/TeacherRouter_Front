@@ -3,6 +3,7 @@ import { SidenavService } from "../../services/sidenav.service";
 import { Router } from '@angular/router';
 import { VisitorSidenavComponent } from '../visitor-sidenav/visitor-sidenav.component';
 import { ComponentFactoryResolver, Injector, ApplicationRef, EmbeddedViewRef } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,22 +11,26 @@ import { ComponentFactoryResolver, Injector, ApplicationRef, EmbeddedViewRef } f
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  logged: boolean = false;
   constructor(private sidenavService: SidenavService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector,
-    private appRef: ApplicationRef) {
-  }
+    private injector: Injector, private appRef: ApplicationRef, private auth: AuthService) {
 
+      this.switch();
 
-  header_noLogged: boolean = true;
-  header_Logged: boolean = false;
+    }
+
 
   toggleSidenav() {
     this.sidenavService.toggle();
   }
 
   switch() {
-    this.header_Logged = !this.header_Logged;
-    this.header_noLogged = !this.header_noLogged;
+    this.logged = this.auth.getToken()
+  }
+
+  logOut(){
+    localStorage.removeItem('teacher-token');
+    this.router.navigateByUrl('/');
   }
 
   @ViewChild('visitorSidenav', { static: false }) visitorSidenav!: VisitorSidenavComponent;
