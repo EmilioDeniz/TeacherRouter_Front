@@ -53,4 +53,4 @@ import { VisitorSidenavComponent } from './components/visitor-sidenav/visitor-si
     FormsModule,
   ]
 })
-export class TeacherRouterModule { }
+export class TeacherRouterModule { }
