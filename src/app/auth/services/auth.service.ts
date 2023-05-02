@@ -9,25 +9,32 @@ import { environment } from 'src/environments/environment.development';
 })
 
 export class AuthService {
- 
+
   constructor(private http: HttpClient) { }
 
-  get apiUrl () {
+  get apiUrl() {
     return `${environment.apiUrl}/login`;
   }
 
-  login( username: string, password: string ) {   
+  login(username: string, password: string) {
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
 
-    return this.http.post<any>( this.apiUrl, formData )
+    return this.http.post<any>(this.apiUrl, formData)
       .pipe(
-        tap( resp => {          
+        tap(resp => {
           localStorage.setItem('teacher-token', resp.token);
         }),
-        map( resp => resp.ok ),
-        catchError( err => of(err.error.msg) )
+        map(resp => resp.ok),
+        catchError(err => of(err.error.msg))
       );
+  }
+
+  getToken() {
+    if (!localStorage.getItem('teacher-token')) {
+      return false;
+    }
+    return true;
   }
 }
