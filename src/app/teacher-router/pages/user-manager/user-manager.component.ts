@@ -32,16 +32,21 @@ interface User {
 }
 
 const USER_DATA: User[] = [
-  { name: 'Juan', isAdmin: true},
-  { name: 'Maria', isAdmin: false },
-  { name: 'Pedro', isAdmin: false },
-  { name: 'Juan Manuel', isAdmin: false },
-  { name: 'Maria', isAdmin: false },
-  { name: 'Pedro', isAdmin: false },
-  { name: 'Juan Manuel', isAdmin: false },
-  { name: 'Maria', isAdmin: false },
-  { name: 'Pedro', isAdmin: false },
-  { name: 'Paco ', isAdmin: false }
+  { name: 'Juan Quintana', isAdmin: true},
+  { name: 'Maria García', isAdmin: false },
+  { name: 'Pedro Lopéz', isAdmin: false },
+  { name: 'Juan Manuel Fernández', isAdmin: false },
+  { name: 'Maria del Carmen Martín', isAdmin: false },
+  { name: 'Ricardo García', isAdmin: false },
+  { name: 'Laura Martínez', isAdmin: false },
+  { name: 'Carmen Rodriguez', isAdmin: false },
+  { name: 'Manolo Sánchez', isAdmin: false },
+  { name: 'Alba González', isAdmin: false },
+  { name: 'Francisco Pérez', isAdmin: false },
+  { name: 'David Ortega', isAdmin: false },
+  { name: 'Jose Luis Rodriguez', isAdmin: false },
+  { name: 'Javier Lopéz', isAdmin: false },
+  { name: 'Beatriz Pérez ', isAdmin: false }
 ];
 
 @Component({
@@ -61,16 +66,16 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
   name: string = this.selectedRow.name;
   role: boolean = this.selectedRow.isAdmin;
   days = [
-    {name: 'L', selected: false},
-    {name: 'M', selected: false},
-    {name: 'X', selected: false},
-    {name: 'J', selected: false},
-    {name: 'V', selected: false},
+    {name: 'L', selected: true},
+    {name: 'M', selected: true},
+    {name: 'X', selected: true},
+    {name: 'J', selected: true},
+    {name: 'V', selected: true},
     {name: 'S', selected: false},
     {name: 'D', selected: false}
   ];
   displayedColumns: string[] = ['name', 'isAdmin'];
-  pageSize = window.innerWidth < 600 ? 6 : 10;
+  pageSize = window.innerHeight < 900 ? 6 : 10;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable) table!: MatTable<User>;
