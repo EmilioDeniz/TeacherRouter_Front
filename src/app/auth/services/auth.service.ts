@@ -28,7 +28,7 @@ export class AuthService {
           localStorage.setItem('teacher-token', resp.token);
         }),
         map(resp => resp.ok),
-        catchError(err => Swal.fire({title: 'Error', text: 'usuario y/o contraseña incorrectos', icon:'error', confirmButtonText: 'Pues vale mi rey'}))
+        catchError(error => Swal.fire({title: 'Error', text: error.error.message, icon:'error', confirmButtonText: 'Lo intentaré de nuevo...'}))
       );
   }
 
