@@ -1,17 +1,13 @@
 .mapContainer {
   display: block;
-  height: 50vh;
+  height: 100%;
   border-radius: 20px;
 }
 
-.mapContainer img {
+#map {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  border-radius: inherit;
 }
 
-
-/*Panel para mostrar el mapa*/
-/* .mapDisplay {
-
-} */

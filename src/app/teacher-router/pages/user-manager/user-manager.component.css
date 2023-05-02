@@ -1,7 +1,9 @@
 .main-box {
+  padding: 10vh 5vw 0 5vw;
+  height: 79.5vh;
   display: flex;
-  background-color: aqua;
-  height: 89.7vh;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .user-search {
@@ -49,17 +51,19 @@
   right: 2%;
 }
 
-table {
+.mat-table {
   width: 100%;
   background-color: white !important;
   color: black !important;
+  border-radius: 10px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
 
-table td {
+.mat-table td {
   color: black !important;
 }
 
-table th {
+.mat-table th {
   color: black !important;
 }
 
@@ -77,5 +81,47 @@ table th {
 
 .selectedRow {
   background-color: lightblue !important;
+}
+
+#search {
+  width: 100%;
+}
+
+.header-cell {
+  box-shadow: 0px 0px 0px 0px rgba(255, 0, 0, 0.08) !important;
+}
+
+#change-password-button {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 0 0;
+}
+
+#change-password-button:hover {
+  color: #0056b3;
+}
+
+#change-password-button:disabled {
+  color: #5bc0de;
+}
+
+#update-user:disabled {
+  background-color: #c2185b;
+}
+
+#delete-user {
+  margin-left: 15px;
+}
+
+#delete-user:disabled {
+  background-color: #4c555a;
+}
+
+#admin-slide {
+  color: black !important;
 }
 

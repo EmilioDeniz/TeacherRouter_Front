@@ -50,6 +50,10 @@ export class HeaderComponent {
   }
 
   isAdmin() {
-    return false;
+    return true;
+  }
+
+  get isTeacherHome() {
+    return this.router.url === '/teacher-home';
   }
 }

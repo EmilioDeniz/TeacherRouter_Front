@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Centre } from '../components/visitor-sidenav/visitor-sidenav.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouteService {
-  private centres: Centre[] = [
-    { centreName: 'Colegio San Juan', street: 'Calle Mayor 12', visited: false, current: true },
-    { centreName: 'Instituto Montes', street: 'Avenida de la Constitución 25', visited: false, current: false },
-    { centreName: 'Escuela Nuestra Señora', street: 'Calle del Sol 8', visited: false, current: false }
-  ];
+  private centres !: Centre[]
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getCentres(): Centre[] {
+    const url = 'http://138.68.130.127:5000'
+    this.http.get<JSON>
     return this.centres;
   }
 
