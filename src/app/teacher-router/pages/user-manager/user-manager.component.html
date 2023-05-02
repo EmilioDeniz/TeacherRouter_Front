@@ -21,7 +21,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns" class="header-cell"></tr>
       <tr class="rows" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" [ngClass]="{'selectedRow': row === selectedRow}">
     </table>
-    <mat-paginator pageSize="8"
+    <mat-paginator [pageSize]="pageSize"
                    showFirstLastButtons
                    aria-label="Select user">
     </mat-paginator>

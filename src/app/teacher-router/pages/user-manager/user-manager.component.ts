@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Injectable, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, HostListener, Injectable, OnInit, ViewChild} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {MatDialog} from "@angular/material/dialog";
 import {MatTable, MatTableDataSource} from "@angular/material/table";
@@ -70,9 +70,15 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     {name: 'D', selected: false}
   ];
   displayedColumns: string[] = ['name', 'isAdmin'];
+  pageSize = window.innerWidth < 600 ? 6 : 10;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatTable) table!: MatTable<User>;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.pageSize = window.innerHeight < 900 ? 6 : 10;
+    this.paginator._changePageSize(this.pageSize);
+  }
   constructor(public dialog: MatDialog) {}
   ngOnInit() {
     this.searchControl.valueChanges.subscribe(value => {
