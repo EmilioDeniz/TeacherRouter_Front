@@ -10,25 +10,32 @@ import Swal from 'sweetalert2';
 })
 
 export class AuthService {
- 
+
   constructor(private http: HttpClient) { }
 
-  get apiUrl () {
+  get apiUrl() {
     return `${environment.apiUrl}/login`;
   }
 
-  login( username: string, password: string ) {   
+  login(username: string, password: string) {
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
 
-    return this.http.post<any>( this.apiUrl, formData )
+    return this.http.post<any>(this.apiUrl, formData)
       .pipe(
-        tap( resp => {          
+        tap(resp => {
           localStorage.setItem('teacher-token', resp.token);
         }),
-        map( resp => resp.ok ),
-        catchError( err => Swal.fire({title: 'Error', text: 'usuario y/o contraseña incorrectos', icon:'error', confirmButtonText: 'Pues vale'}) )
+        map(resp => resp.ok),
+        catchError(err => Swal.fire({title: 'Error', text: 'usuario y/o contraseña incorrectos', icon:'error', confirmButtonText: 'Pues vale'}))
       );
+  }
+
+  getToken() {
+    if (!localStorage.getItem('teacher-token')) {
+      return false;
+    }
+    return true;
   }
 }

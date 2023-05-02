@@ -1,4 +1,4 @@
-<header *ngIf="header_noLogged">
+<header *ngIf="!logged">
 
   <div id="header_elements">
 
@@ -6,17 +6,15 @@
 
     <div id="login">
 
-      <a href="" class="text"> Iniciar sesión</a>
-      <a href="">
+      <a routerLink="/" class="text"> Iniciar sesión</a>
+      <a routerLink="/">
         <img src="../../../../assets/images/Logo perfil.png" alt="" title="Profile"></a>
     </div>
   </div>
 
-  <button (click)="switch()">switch</button>
-
 </header>
 
-<header *ngIf="header_Logged">
+<header *ngIf="logged">
 
   <button (click)="toggleSidenav()" mat-button>
     <mat-icon fontIcon="menu"></mat-icon>
@@ -28,17 +26,17 @@
 
       <a href=""> <img src="../../../../assets/images/Logo.png" alt="" title="Home"></a>
 
-      <a href="" class="text">Mi trabajo</a>
+      <a routerLink="/main/teacher-home" class="text">Mi trabajo</a>
 
       <a href="" class="text">Mis horarios</a>
     </div>
 
-    <div id="profile">
+    <div id="profile" routerLink="/main/user-manager">
 
-      <a href="" class="text" id="profile_text"> Mi perfil</a>
-      <a href="">
+      <a class="text" id="profile_text"> Mi perfil</a>
+      <a>
         <img src="../../../../assets/images/Logo perfil.png" alt="" title="Profile"></a>
-      </div>
     </div>
-    <button (click)="switch()">switch</button>
+  </div>
+  <a id="logout" (click)="logOut()">Cerrar sesión</a>
 </header>
