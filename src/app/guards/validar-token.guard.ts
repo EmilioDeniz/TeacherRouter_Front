@@ -11,11 +11,12 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
               private router        : Router ) { }
 
   canActivate(): Observable<boolean> | boolean {
+    
     return this.teacherService.validarToken()
       .pipe(
-        tap(valid => {
+        tap(valid => {               
           if (!valid) {
-            this.router.navigateByUrl('')
+            this.router.navigateByUrl('/')
           }
         })
       );

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -11,22 +12,19 @@ export class AuthService {
  
   constructor(private http: HttpClient) { }
 
-  get url () {
-    return 'http://104.248.171.221:5000/login';
+  get apiUrl () {
+    return `${environment.apiUrl}/login`;
   }
 
-  login( username: string, password: string ) {
-
-    
+  login( username: string, password: string ) {   
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password", password);
 
-    return this.http.post<any>( this.url, formData )
+    return this.http.post<any>( this.apiUrl, formData )
       .pipe(
-        tap( resp => {
+        tap( resp => {          
           localStorage.setItem('teacher-token', resp.token);
-          
         }),
         map( resp => resp.ok ),
         catchError( err => of(err.error.msg) )

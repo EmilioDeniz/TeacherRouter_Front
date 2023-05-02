@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 
 import { AuthService } from "../../services/auth.service";
+import { environment } from 'src/environments/environment.development';
 
 
 @Component({
@@ -48,7 +49,8 @@ export class LoginComponent {
       const { username, password } = this.form.value;
       const encryptedPassword = CryptoJS.SHA256(password).toString();
 
-      this.authService.login(username, encryptedPassword).subscribe(()=> {
+      this.authService.login(username, encryptedPassword).subscribe(()=> { 
+           
         this.router.navigateByUrl('/main')
       })
     }

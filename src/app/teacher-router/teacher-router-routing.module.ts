@@ -7,37 +7,46 @@ import { ItemsManagerComponent } from './pages/items-manager/items-manager.compo
 import { RouteManagerComponent } from './pages/route-manager/route-manager.component';
 import { TeacherHomeComponent } from './pages/teacher-home/teacher-home.component';
 import { UserManagerComponent } from './pages/user-manager/user-manager.component';
+import { ValidarTokenGuard } from '../guards/validar-token.guard';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'admin-home', component: AdminHomeComponent
+        path: 'admin-home', component: AdminHomeComponent,
+        canActivate: [ValidarTokenGuard],
       }, 
       {
-        path: 'center-manager', component: CenterManagerComponent
+        path: 'center-manager', component: CenterManagerComponent,
+        canActivate: [ValidarTokenGuard],
       },
       {
-        path: 'create-user', component: CreateUserComponent
+        path: 'create-user', component: CreateUserComponent,
+        canActivate: [ValidarTokenGuard],
       },
       {
-        path: 'items-manager', component: ItemsManagerComponent
+        path: 'items-manager', component: ItemsManagerComponent,
+        canActivate: [ValidarTokenGuard],
       },
       {
-        path: 'route-manager', component: RouteManagerComponent
+        path: 'route-manager', component: RouteManagerComponent,
+        canActivate: [ValidarTokenGuard],
       },
       {
-        path:'teacher-home', component: TeacherHomeComponent
+        path:'teacher-home', component: TeacherHomeComponent,
+        canActivate: [ValidarTokenGuard],
       },
       {
-        path:'user-manager', component: UserManagerComponent
+        path:'user-manager', component: UserManagerComponent,
+        canActivate: [ValidarTokenGuard],
       },
       {
         path:'**', redirectTo: 'admin-home'
       }
     ]
-  }
+  },
+  
 ];
 
 @NgModule({
