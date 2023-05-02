@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment.development';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class AuthService {
           localStorage.setItem('teacher-token', resp.token);
         }),
         map( resp => resp.ok ),
-        catchError( err => of(err.error.msg) )
+        catchError( err => Swal.fire({title: 'Error', text: 'usuario y/o contraseña incorrectos', icon:'error', confirmButtonText: 'Pues vale'}) )
       );
   }
 }

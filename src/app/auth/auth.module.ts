@@ -6,7 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule} from '@angular/flex-layout'
 import { AngularMaterialModule } from '../angular-material/angular-material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularMaterialModule,
     
     ReactiveFormsModule,
-    AuthRoutingModule
+    AuthRoutingModule,
   
   ]
 })
