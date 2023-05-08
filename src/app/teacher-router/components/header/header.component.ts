@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { SidenavService } from "../../services/sidenav.service";
 import { Router } from '@angular/router';
-import { VisitorSidenavComponent } from '../visitor-sidenav/visitor-sidenav.component';
 import { ComponentFactoryResolver, Injector, ApplicationRef, EmbeddedViewRef } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
@@ -31,27 +30,6 @@ export class HeaderComponent {
   logOut(){
     localStorage.removeItem('teacher-token');
     this.router.navigateByUrl('/');
-  }
-
-  @ViewChild('visitorSidenav', { static: false }) visitorSidenav!: VisitorSidenavComponent;
-
-
-  toggleVisitorSidenav() {
-    if (this.visitorSidenav) {
-
-    } else {
-      const factory = this.componentFactoryResolver.resolveComponentFactory(VisitorSidenavComponent);
-      const componentRef = factory.create(this.injector);
-      this.appRef.attachView(componentRef.hostView);
-      const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-      document.body.appendChild(domElem);
-    }
-  }
-
-  onSiguienteClicked() {
-    if (this.visitorSidenav) {
-      this.visitorSidenav.siguiente();
-    }
   }
 
   isAdmin() {
