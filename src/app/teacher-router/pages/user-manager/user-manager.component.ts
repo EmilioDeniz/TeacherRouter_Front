@@ -29,24 +29,146 @@ class MatPaginatorIntlCro extends MatPaginatorIntl {
 interface User {
   name: string;
   isAdmin: boolean;
+  startAddress: string;
+  days: any[];
 }
 
 const USER_DATA: User[] = [
-  { name: 'Juan Quintana', isAdmin: true},
-  { name: 'Maria García', isAdmin: false },
-  { name: 'Pedro Lopéz', isAdmin: true },
-  { name: 'Juan Manuel Fernández', isAdmin: false },
-  { name: 'Maria del Carmen Martín', isAdmin: false },
-  { name: 'Ricardo García', isAdmin: true },
-  { name: 'Laura Martínez', isAdmin: false },
-  { name: 'Carmen Rodriguez', isAdmin: true },
-  { name: 'Manolo Sánchez', isAdmin: true },
-  { name: 'Alba González', isAdmin: false },
-  { name: 'Francisco Pérez', isAdmin: false },
-  { name: 'David Ortega', isAdmin: true },
-  { name: 'Jose Luis Rodriguez', isAdmin: false },
-  { name: 'Javier Lopéz', isAdmin: false },
-  { name: 'Beatriz Pérez ', isAdmin: false }
+  { name: 'Juan Quintana', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: false},
+      {name: 'V', selected: false},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ]},
+  { name: 'Maria García', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: false},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ]},
+  { name: 'Pedro Lopéz', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: false},
+      {name: 'M', selected: true},
+      {name: 'X', selected: false},
+      {name: 'J', selected: true},
+      {name: 'V', selected: false},
+      {name: 'S', selected: true},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Juan Manuel Fernández', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: true}
+    ] },
+  { name: 'Maria del Carmen Martín', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Ricardo García', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Laura Martínez', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Carmen Rodriguez', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Manolo Sánchez', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Alba González', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Francisco Pérez', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'David Ortega', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Jose Luis Rodriguez', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Javier Lopéz', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] },
+  { name: 'Beatriz Pérez ', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
+      {name: 'L', selected: true},
+      {name: 'M', selected: true},
+      {name: 'X', selected: true},
+      {name: 'J', selected: true},
+      {name: 'V', selected: true},
+      {name: 'S', selected: false},
+      {name: 'D', selected: false}
+    ] }
 ];
 
 @Component({
@@ -65,16 +187,8 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
   isUserDeleted: boolean = false;
   name: string = this.selectedRow.name;
   role: boolean = this.selectedRow.isAdmin;
-  days = [
-    {name: 'L', selected: true},
-    {name: 'M', selected: true},
-    {name: 'X', selected: true},
-    {name: 'J', selected: true},
-    {name: 'V', selected: true},
-    {name: 'S', selected: false},
-    {name: 'D', selected: false}
-  ];
-  displayedColumns: string[] = ['name', 'isAdmin'];
+
+  displayedColumns: string[] = ['name', 'isAdmin', 'startAddress'];
   pageSize = window.innerHeight < 900 ? 6 : 10;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -111,9 +225,19 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
       if (result) {
         const newUser = {
           name: result[0],
-          isAdmin: result[1]
+          isAdmin: result[1],
+          startAddress: 'Av. Colocón, 24',
+          days: [
+            {name: 'L', selected: true},
+            {name: 'M', selected: true},
+            {name: 'X', selected: true},
+            {name: 'J', selected: true},
+            {name: 'V', selected: true},
+            {name: 'S', selected: false},
+            {name: 'D', selected: false}
+          ]
         };
-        this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin });
+        this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin, startAddress: newUser.startAddress, days: newUser.days });
       }
     });
     this.table.renderRows();

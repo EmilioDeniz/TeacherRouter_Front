@@ -33,8 +33,15 @@ export class AddUserDialogComponent implements OnInit {
   }
   addUser() {
     this.dialogRef.close([this.addUserForm.get('username')!.value, this.addUserForm.get('isAdmin')!.value]);
+    console.log(this.addUserForm.get('isAdmin')!.value);
   }
   onNoClick() {
     this.dialogRef.close();
+  }
+
+  toggleAdmin() {
+    this.addUserForm.patchValue({
+      isAdmin: !this.addUserForm.get('isAdmin')!.value
+    });
   }
 }

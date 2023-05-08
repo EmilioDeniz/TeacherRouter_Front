@@ -16,7 +16,7 @@ const routes: Routes = [
       {
         path: 'admin-home', component: AdminHomeComponent,
         canActivate: [ValidarTokenGuard],
-      }, 
+      },
       {
         path: 'center-manager', component: CenterManagerComponent,
         canActivate: [ValidarTokenGuard],
@@ -46,7 +46,7 @@ const routes: Routes = [
       }
     ]
   },
-  
+
 ];
 
 @NgModule({
