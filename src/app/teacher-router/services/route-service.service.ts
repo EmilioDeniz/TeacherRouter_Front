@@ -18,16 +18,13 @@ export class RouteService {
   constructor(private http: HttpClient, private httpPost: HttpPostServiceService) { }
 
   getCentres(): Centre[] {
-    const url = 'http://138.68.130.127:5000'
 
     const formData = new FormData();
     const teacherToken = localStorage.getItem('teacher-token');
     if (teacherToken !== null) {
-      formData.append('teacher-token', teacherToken);
-      this.httpPost.peticionSever('/getRoute', formData).subscribe((response: any) => {
-        if (typeof response === 'object' && response !== null) {
-          this.centres = response;
-        }
+      formData.append('token', teacherToken);
+      this.httpPost.peticionSever('getRoute', formData).subscribe((response: any) => {
+        console.log(response)
       });
     }
     return this.centres
