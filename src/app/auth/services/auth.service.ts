@@ -26,6 +26,7 @@ export class AuthService {
       .pipe(
         tap(resp => {
           localStorage.setItem('teacher-token', resp.token);
+          
         }),
         map(resp => resp.ok),
         catchError(error => Swal.fire({title: 'Error', text: error.error.message, icon:'error', confirmButtonText: 'Lo intentaré de nuevo...'}))
