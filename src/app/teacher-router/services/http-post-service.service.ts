@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class HttpPostServiceService {
-
+  
   constructor() { }
 
   peticionSever(url: string, data: FormData): any{

@@ -19,7 +19,6 @@ import { TeacherRouterRoutingModule } from './teacher-router-routing.module';
 import { ChangePasswordDialogComponent } from './components/change-password-dialog/change-password-dialog.component';
 import { AddUserDialogComponent } from './components/add-user-dialog/add-user-dialog.component';
 import { CenterLabelComponent } from './components/center-label/center-label.component';
-import { VisitorSidenavComponent } from './components/visitor-sidenav/visitor-sidenav.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +36,7 @@ import { VisitorSidenavComponent } from './components/visitor-sidenav/visitor-si
     FooterComponent,
     ChangePasswordDialogComponent,
     AddUserDialogComponent,
-    CenterLabelComponent,
-    VisitorSidenavComponent,
+    CenterLabelComponent
   ],
   exports: [
     AdminMenuComponent,
