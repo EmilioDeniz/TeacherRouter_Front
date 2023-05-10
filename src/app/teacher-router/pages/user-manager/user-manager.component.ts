@@ -8,6 +8,8 @@ import {MatPaginator, MatPaginatorIntl} from "@angular/material/paginator";
 import * as colorette from "colorette";
 import {ThemePalette} from "@angular/material/core";
 import {HttpPostServiceService} from "../../services/http-post-service.service";
+import {tap} from "rxjs/operators";
+import * as CryptoJS from 'crypto-js';
 
 @Injectable()
 class MatPaginatorIntlCro extends MatPaginatorIntl {
@@ -221,9 +223,11 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
 
   openAddUserDialog(): void {
     const dialogRef = this.dialog.open(AddUserDialogComponent);
+    let password = null;
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        password = CryptoJS.SHA256(result[2]).toString();
         const newUser = {
           name: result[0],
           isAdmin: result[1],
@@ -238,13 +242,29 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
             {name: 'D', selected: false}
           ]
         };
+
+        newUser.days.toString = function() {
+          let result = '';
+          for (let i = 0; i < this.length; i++) {
+            result += `${this[i].selected ? '1' : '0'},`;
+          }
+          return result.slice(0, -2);
+        };
+
         this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin, startAddress: newUser.startAddress, days: newUser.days });
         const formData = new FormData();
+        formData.append('token', localStorage.getItem('teacher-token')!);
         formData.append('username', newUser.name);
-        formData.append('isAdmin', newUser.isAdmin);
-        formData.append('startAddress', newUser.startAddress);
-        formData.append('days', newUser.days.toString());
-        this.httpService.peticionSever('hola', formData);
+        formData.append('password', password);
+        formData.append('isAdmin', newUser.isAdmin ? '1' : '0');
+        //formData.append('startAddress', newUser.startAddress);
+        //formData.append('days', newUser.days.toString());
+        console.log(newUser.days.toString());
+
+        this.httpService.peticionSever('register', formData).subscribe((resp: any) => {
+            console.log(resp)
+          }
+        );
       }
     });
     this.table.renderRows();

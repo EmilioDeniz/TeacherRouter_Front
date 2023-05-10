@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Centre } from '../components/visitor-sidenav/visitor-sidenav.component';
+
+export interface Centre {
+  centreName: string;
+  street: string;
+  latitude: number
+  longitude: number
+}
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +18,17 @@ export class RouteService {
 
   getCentres(): Centre[] {
     const url = 'http://138.68.130.127:5000'
-    this.http.get<JSON>
-    return this.centres;
+
+    const formData = new FormData();
+    const teacherToken = localStorage.getItem('teacher-token');
+    if (teacherToken !== null) {
+      formData.append('teacher-token', teacherToken);
+    }
+
+    return this.centres
   }
 
   updateCentre(centre: Centre): void {
-    const index = this.centres.indexOf(centre);
-
-    if (index !== -1 && index < this.centres.length - 1) {
-      this.centres[index].visited = !this.centres[index].visited;
-      this.centres[index].current = false;
-      this.centres[index + 1].current = true;
-    }
+    
   }
 }

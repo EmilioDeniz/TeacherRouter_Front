@@ -1,7 +1,0 @@
-.container {
-    display: flex;
-    flex-grow: inherit;
-    flex-wrap: wrap;
-    align-items: center;
-    scroll-behavior: smooth;
-}
