@@ -39,7 +39,7 @@ const routes: Routes = [
       },
       {
         path:'user-manager', component: UserManagerComponent,
-        canActivate: [ValidarTokenGuard],
+        //canActivate: [ValidarTokenGuard],
       },
       {
         path:'**', redirectTo: 'admin-home'

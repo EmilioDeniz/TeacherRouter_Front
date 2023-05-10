@@ -7,6 +7,7 @@ import {AddUserDialogComponent} from "../../components/add-user-dialog/add-user-
 import {MatPaginator, MatPaginatorIntl} from "@angular/material/paginator";
 import * as colorette from "colorette";
 import {ThemePalette} from "@angular/material/core";
+import {HttpPostServiceService} from "../../services/http-post-service.service";
 
 @Injectable()
 class MatPaginatorIntlCro extends MatPaginatorIntl {
@@ -198,7 +199,7 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     this.pageSize = window.innerHeight < 900 ? 6 : 10;
     this.paginator._changePageSize(this.pageSize);
   }
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private httpService: HttpPostServiceService) {}
   ngOnInit() {
     this.searchControl.valueChanges.subscribe(value => {
       // Actualizar el filtro de la fuente de datos de la tabla
@@ -238,6 +239,12 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
           ]
         };
         this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin, startAddress: newUser.startAddress, days: newUser.days });
+        const formData = new FormData();
+        formData.append('username', newUser.name);
+        formData.append('isAdmin', newUser.isAdmin);
+        formData.append('startAddress', newUser.startAddress);
+        formData.append('days', newUser.days.toString());
+        this.httpService.peticionSever('hola', formData);
       }
     });
     this.table.renderRows();
@@ -283,5 +290,7 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     this.role = false;
     this.isUserDeleted = true;
   }
+
+
 }
 

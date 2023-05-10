@@ -11,10 +11,10 @@ export class HttpPostServiceService {
 
     console.log("url: ", url);
     console.log("data: ", data);
-    
+
 
   }
-  
+
 
 
 }
