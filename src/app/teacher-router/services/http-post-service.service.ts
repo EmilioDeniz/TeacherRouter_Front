@@ -6,4 +6,15 @@ import { Injectable } from '@angular/core';
 export class HttpPostServiceService {
 
   constructor() { }
+
+  peticionSever(url: string, data: FormData): any{
+
+    console.log("url: ", url);
+    console.log("data: ", data);
+    
+
+  }
+  
+
+
 }
