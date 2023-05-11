@@ -36,144 +36,6 @@ interface User {
   days: any[];
 }
 
-const USER_DATA: User[] = [
-  { name: 'Juan Quintana', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: false},
-      {name: 'V', selected: false},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ]},
-  { name: 'Maria García', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: false},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ]},
-  { name: 'Pedro Lopéz', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: false},
-      {name: 'M', selected: true},
-      {name: 'X', selected: false},
-      {name: 'J', selected: true},
-      {name: 'V', selected: false},
-      {name: 'S', selected: true},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Juan Manuel Fernández', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: true}
-    ] },
-  { name: 'Maria del Carmen Martín', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Ricardo García', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Laura Martínez', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Carmen Rodriguez', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Manolo Sánchez', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Alba González', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Francisco Pérez', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'David Ortega', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Jose Luis Rodriguez', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Javier Lopéz', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Beatriz Pérez ', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] }
-];
-
 @Component({
   selector: 'app-user-manager',
   templateUrl: './user-manager.component.html',
@@ -185,11 +47,21 @@ const USER_DATA: User[] = [
 export class UserManagerComponent implements OnInit, AfterViewInit {
   searchControl = new FormControl();
   // Ejemplo de datos de usuario
-  dataSource = new MatTableDataSource<User>(USER_DATA);
-  selectedRow: User = USER_DATA[0];
-  isUserDeleted: boolean = false;
-  name: string = this.selectedRow.name;
-  role: boolean = this.selectedRow.isAdmin;
+  dataSource = new MatTableDataSource<User>();
+  selectedRow?: User;
+  isUserDeleted: boolean = true;
+  name?: string;
+  role?: boolean;
+
+  days: any = [
+    {name: 'L', selected: false},
+    {name: 'M', selected: false},
+    {name: 'X', selected: false},
+    {name: 'J', selected: false},
+    {name: 'V', selected: false},
+    {name: 'S', selected: false},
+    {name: 'D', selected: false}
+  ]
 
   displayedColumns: string[] = ['name', 'isAdmin', 'startAddress'];
   pageSize = window.innerHeight < 900 ? 6 : 10;
@@ -203,6 +75,7 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
   }
   constructor(public dialog: MatDialog, private httpService: HttpPostServiceService) {}
   ngOnInit() {
+    this.getUsersData();
     this.searchControl.valueChanges.subscribe(value => {
       // Actualizar el filtro de la fuente de datos de la tabla
       this.dataSource.filter = value;
@@ -215,8 +88,13 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
 
   openChangePasswordDialog(): void {
     const dialogRef = this.dialog.open(ChangePasswordDialogComponent);
+    let password = null;
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        password = CryptoJS.SHA256(result).toString();
+        this.changePasswordFromServer(this.selectedRow!.name, password);
+      }
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -227,47 +105,21 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        password = CryptoJS.SHA256(result[2]).toString();
-        const newUser = {
-          name: result[0],
-          isAdmin: result[1],
-          startAddress: 'Av. Colocón, 24',
-          days: [
-            {name: 'L', selected: true},
-            {name: 'M', selected: true},
-            {name: 'X', selected: true},
-            {name: 'J', selected: true},
-            {name: 'V', selected: true},
-            {name: 'S', selected: false},
-            {name: 'D', selected: false}
-          ]
-        };
+        this.addUserInServer(result[0], CryptoJS.SHA256(result[2]).toString(), result[1] ? '1' : '0');
+        this.getUsersData();
 
-        newUser.days.toString = function() {
+        //this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin, startAddress: newUser.startAddress, days: newUser.days });
+        /*newUser.days.toString = function() {
           let result = '';
           for (let i = 0; i < this.length; i++) {
             result += `${this[i].selected ? '1' : '0'},`;
           }
           return result.slice(0, -2);
         };
-
-        this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin, startAddress: newUser.startAddress, days: newUser.days });
-        const formData = new FormData();
-        formData.append('token', localStorage.getItem('teacher-token')!);
-        formData.append('username', newUser.name);
-        formData.append('password', password);
-        formData.append('isAdmin', newUser.isAdmin ? '1' : '0');
-        //formData.append('startAddress', newUser.startAddress);
-        //formData.append('days', newUser.days.toString());
-        console.log(newUser.days.toString());
-
-        this.httpService.peticionServer('register', formData).subscribe((resp: any) => {
-            console.log(resp)
-          }
-        );
+        console.log(newUser.days.toString());*/
       }
     });
-    this.table.renderRows();
+
   }
 
   selectRow(row: User) {
@@ -280,25 +132,26 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
   updateUser() {
     if (!this.selectedRow) return;
 
-    console.log(this.name);
-    console.log(this.selectedRow.isAdmin);
+    this.modifyUserDataFromServer(this.selectedRow.name, this.name!, this.role ? '1' : '0');
 
-    this.selectedRow.name = this.name;
-    this.selectedRow.isAdmin = this.role;
+    this.selectedRow.name = this.name!;
+    this.selectedRow.isAdmin = this.role!;
 
-    this.dataSource.data = this.dataSource.data.map(user => {
+    /*this.dataSource.data = this.dataSource.data.map(user => {
       if (user === this.selectedRow) {
-        return { ...user, name: this.name, isAdmin: this.role };
+        return { ...user, name: this.name!, isAdmin: this.role! };
       }
       return user;
-    });
-    this.table.renderRows();
+    });*/
+    this.getUsersData();
     this.clearSelection();
   }
   deleteUser() {
-    const index = this.dataSource.data.indexOf(this.selectedRow);
+    this.deleteUserFromServer(this.selectedRow!.name);
+    /*const index = this.dataSource.data.indexOf(this.selectedRow!);
     this.dataSource.data.splice(index, 1);
-    this.dataSource._updateChangeSubscription();
+    this.dataSource._updateChangeSubscription();*/
+    this.getUsersData();
     this.clearSelection();
   }
   toggleDay(day: any) {
@@ -314,9 +167,68 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
   getUsersData() {
     const formData = new FormData();
     formData.append('token', localStorage.getItem('teacher-token')!);
-    this.httpService.peticionServer('getUsers', formData).subscribe((resp: any) => {
+    this.httpService.peticionServer('getUsersData', formData).subscribe((resp: any) => {
+      this.dataSource = resp.users.map((user: any) => ({
+        name: user.username,
+        isAdmin: user.rol === 1,
+        startAddress: '123 Main St',
+        days: [
+          {name: 'L', selected: true},
+          {name: 'M', selected: true},
+          {name: 'X', selected: true},
+          {name: 'J', selected: true},
+          {name: 'V', selected: true},
+          {name: 'S', selected: false},
+          {name: 'D', selected: false}
+        ]
+      }));
+      this.table.renderRows();
+    });
+  }
+
+  modifyUserDataFromServer(username: string, newUsername: string, isAdmin: string) {
+    const formData = new FormData();
+    formData.append('token', localStorage.getItem('teacher-token')!);
+    formData.append('username', username);
+    formData.append('newUsername', newUsername);
+    formData.append('isAdmin', isAdmin);
+    this.httpService.peticionServer('modifyUser', formData).subscribe((resp: any) => {
       console.log(resp)
     });
+  }
+
+  deleteUserFromServer(username: string) {
+    const formData = new FormData();
+    formData.append('token', localStorage.getItem('teacher-token')!);
+    formData.append('username', username);
+    this.httpService.peticionServer('deleteUser', formData).subscribe((resp: any) => {
+      console.log(resp)
+    })
+  }
+
+  changePasswordFromServer(username: string, newPassword: string) {
+    const formData = new FormData();
+    formData.append('token', localStorage.getItem('teacher-token')!);
+    formData.append('username', username);
+    formData.append('newPassword', newPassword);
+    this.httpService.peticionServer('changePassword', formData).subscribe((resp: any) => {
+      console.log(resp)
+    });
+  }
+
+  private addUserInServer(username: string, password: string, isAdmin: string) {
+    const formData = new FormData();
+    formData.append('token', localStorage.getItem('teacher-token')!);
+    formData.append('username', username);
+    formData.append('password', password);
+    formData.append('isAdmin', isAdmin);
+    //formData.append('startAddress', newUser.startAddress);
+    //formData.append('days', newUser.days.toString());
+
+    this.httpService.peticionServer('register', formData).subscribe((resp: any) => {
+        console.log(resp);
+      }
+    );
   }
 }
 
