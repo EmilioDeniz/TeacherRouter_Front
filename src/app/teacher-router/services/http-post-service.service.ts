@@ -15,7 +15,7 @@ export class HttpPostServiceService {
     return `${environment.apiUrl}`;
   }
 
-  peticionSever(url: string, data: FormData): any{
+  peticionServer(url: string, data: FormData): any{
 
     return this.http.post<any>(`${this.apiUrl}/${url}`, data);
 

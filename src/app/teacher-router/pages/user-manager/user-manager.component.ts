@@ -261,7 +261,7 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
         //formData.append('days', newUser.days.toString());
         console.log(newUser.days.toString());
 
-        this.httpService.peticionSever('register', formData).subscribe((resp: any) => {
+        this.httpService.peticionServer('register', formData).subscribe((resp: any) => {
             console.log(resp)
           }
         );
@@ -311,6 +311,12 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     this.isUserDeleted = true;
   }
 
-
+  getUsersData() {
+    const formData = new FormData();
+    formData.append('token', localStorage.getItem('teacher-token')!);
+    this.httpService.peticionServer('getUsers', formData).subscribe((resp: any) => {
+      console.log(resp)
+    });
+  }
 }
 
