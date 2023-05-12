@@ -11,6 +11,8 @@ import {HttpPostServiceService} from "../../services/http-post-service.service";
 import {tap} from "rxjs/operators";
 import * as CryptoJS from 'crypto-js';
 import {User} from "../../../../environments/environment";
+import {map, startWith} from "rxjs";
+import {UsersRequestsService} from "../../services/users-requests.service";
 
 @Injectable()
 class MatPaginatorIntlCro extends MatPaginatorIntl {
@@ -67,17 +69,32 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     this.pageSize = window.innerHeight < 900 ? 6 : 10;
     this.paginator._changePageSize(this.pageSize);
   }
-  constructor(public dialog: MatDialog, private httpService: HttpPostServiceService) {}
+  constructor(public dialog: MatDialog, private usersRequests: UsersRequestsService) {}
   ngOnInit() {
-    this.getUsersData();
-    this.searchControl.valueChanges.subscribe(value => {
-      // Actualizar el filtro de la fuente de datos de la tabla
-      this.dataSource.filter = value;
+    this.usersRequests.getUsersData().pipe(
+      tap((users: User[]) => this.dataSource = new MatTableDataSource(users))
+    ).subscribe(() => {
+      this.searchControl.valueChanges.subscribe(value => {
+        // Actualizar el filtro de la fuente de datos de la tabla
+        this.dataSource.filter = value;
+      });
+    });
+    this.usersRequests.userAdded$.subscribe(() => {
+      // Actualizar la tabla después de agregar el usuario
+      this.updateUserData();
     });
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  updateUserData() {
+    this.usersRequests.getUsersData().pipe(
+      tap((users: User[]) => this.dataSource = new MatTableDataSource(users))
+    ).subscribe(() => {
+      this.table.renderRows();
+    });
   }
 
   openChangePasswordDialog(): void {
@@ -87,7 +104,7 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         password = CryptoJS.SHA256(result).toString();
-        this.changePasswordFromServer(this.selectedRow!.name, password);
+        this.usersRequests.changePasswordFromServer(this.selectedRow!.name, password);
       }
       console.log(`Dialog result: ${result}`);
     });
@@ -99,8 +116,7 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.addUserInServer(result[0], CryptoJS.SHA256(result[2]).toString(), result[1] ? '1' : '0');
-        this.getUsersData();
+        this.usersRequests.addUserInServer(result[0], CryptoJS.SHA256(result[2]).toString(), result[1] ? '1' : '0');
 
         //this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin, startAddress: newUser.startAddress, days: newUser.days });
         /*newUser.days.toString = function() {
@@ -126,27 +142,15 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
   updateUser() {
     if (!this.selectedRow) return;
 
-    this.modifyUserDataFromServer(this.selectedRow.name, this.name!, this.role ? '1' : '0');
+    this.usersRequests.modifyUserDataFromServer(this.selectedRow.name, this.name!, this.role ? '1' : '0');
 
     this.selectedRow.name = this.name!;
     this.selectedRow.isAdmin = this.role!;
-
-    /*this.dataSource.data = this.dataSource.data.map(user => {
-      if (user === this.selectedRow) {
-        return { ...user, name: this.name!, isAdmin: this.role! };
-      }
-      return user;
-    });*/
-    this.getUsersData();
-    this.clearSelection();
   }
   deleteUser() {
-    this.deleteUserFromServer(this.selectedRow!.name);
-    /*const index = this.dataSource.data.indexOf(this.selectedRow!);
-    this.dataSource.data.splice(index, 1);
-    this.dataSource._updateChangeSubscription();*/
-    this.getUsersData();
+    this.usersRequests.deleteUserFromServer(this.selectedRow!.name);
     this.clearSelection();
+    this.updateUserData();
   }
   toggleDay(day: any) {
     day.selected = !day.selected;
@@ -158,71 +162,6 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     this.isUserDeleted = true;
   }
 
-  getUsersData() {
-    const formData = new FormData();
-    formData.append('token', localStorage.getItem('teacher-token')!);
-    this.httpService.peticionServer('getUsersData', formData).subscribe((resp: any) => {
-      this.dataSource = resp.users.map((user: any) => ({
-        name: user.username,
-        isAdmin: user.rol === 1,
-        startAddress: '123 Main St',
-        days: [
-          {name: 'L', selected: true},
-          {name: 'M', selected: true},
-          {name: 'X', selected: true},
-          {name: 'J', selected: true},
-          {name: 'V', selected: true},
-          {name: 'S', selected: false},
-          {name: 'D', selected: false}
-        ]
-      }));
-      this.table.renderRows();
-    });
-  }
 
-  modifyUserDataFromServer(username: string, newUsername: string, isAdmin: string) {
-    const formData = new FormData();
-    formData.append('token', localStorage.getItem('teacher-token')!);
-    formData.append('username', username);
-    formData.append('newUsername', newUsername);
-    formData.append('isAdmin', isAdmin);
-    this.httpService.peticionServer('modifyUser', formData).subscribe((resp: any) => {
-      console.log(resp)
-    });
-  }
-
-  deleteUserFromServer(username: string) {
-    const formData = new FormData();
-    formData.append('token', localStorage.getItem('teacher-token')!);
-    formData.append('username', username);
-    this.httpService.peticionServer('deleteUser', formData).subscribe((resp: any) => {
-      console.log(resp)
-    })
-  }
-
-  changePasswordFromServer(username: string, newPassword: string) {
-    const formData = new FormData();
-    formData.append('token', localStorage.getItem('teacher-token')!);
-    formData.append('username', username);
-    formData.append('newPassword', newPassword);
-    this.httpService.peticionServer('changePassword', formData).subscribe((resp: any) => {
-      console.log(resp)
-    });
-  }
-
-  private addUserInServer(username: string, password: string, isAdmin: string) {
-    const formData = new FormData();
-    formData.append('token', localStorage.getItem('teacher-token')!);
-    formData.append('username', username);
-    formData.append('password', password);
-    formData.append('isAdmin', isAdmin);
-    //formData.append('startAddress', newUser.startAddress);
-    //formData.append('days', newUser.days.toString());
-
-    this.httpService.peticionServer('register', formData).subscribe((resp: any) => {
-        console.log(resp);
-      }
-    );
-  }
 }
 

@@ -5,6 +5,7 @@ import { map, Observable, startWith } from "rxjs";
 import {User} from "../../../../environments/environment";
 import {HttpPostServiceService} from "../../services/http-post-service.service";
 import {tap} from "rxjs/operators";
+import {UsersRequestsService} from "../../services/users-requests.service";
 
 @Component({
   selector: 'app-admin-sidenav',
@@ -29,10 +30,10 @@ export class AdminSidenavComponent implements OnInit {
     {name: 'D', selected: false}
   ];
 
-  constructor(private router: Router, private httpService: HttpPostServiceService) {}
+  constructor(private router: Router, private usersRequests: UsersRequestsService) {}
 
   ngOnInit() {
-    this.getUsersData().pipe(
+    this.usersRequests.getUsersData().pipe(
       tap((users: User[]) => this.users = users)
     ).subscribe(() => {
       console.log(this.users);
@@ -59,26 +60,5 @@ export class AdminSidenavComponent implements OnInit {
 
   toggleDay(day: any) {
     day.selected = !day.selected;
-  }
-
-  getUsersData() {
-    const formData = new FormData();
-    formData.append('token', localStorage.getItem('teacher-token')!);
-    return this.httpService.peticionServer('getUsersData', formData).pipe(
-      map((resp: any) => resp.users.map((user: any) => ({
-        name: user.username,
-        isAdmin: user.rol === 1,
-        startAddress: '123 Main St',
-        days: [
-          {name: 'L', selected: true},
-          {name: 'M', selected: true},
-          {name: 'X', selected: true},
-          {name: 'J', selected: true},
-          {name: 'V', selected: true},
-          {name: 'S', selected: false},
-          {name: 'D', selected: false}
-        ]
-      })))
-    );
   }
 }
