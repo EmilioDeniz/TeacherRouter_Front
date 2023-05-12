@@ -42,7 +42,7 @@
     <mat-slide-toggle id="admin-slide" color="primary" [(ngModel)]="role" [disabled]="isUserDeleted">Administrador</mat-slide-toggle>
 
     <div id="day-button-container">
-      <div *ngFor="let day of selectedRow.days">
+      <div *ngFor="let day of selectedRow ? selectedRow.days : days">
         <button class="day-button" [ngClass]="{'selected': day.selected}" (click)="toggleDay(day)" [disabled]="isUserDeleted">{{day.name}}</button>
       </div>
     </div>

@@ -10,6 +10,9 @@ import {ThemePalette} from "@angular/material/core";
 import {HttpPostServiceService} from "../../services/http-post-service.service";
 import {tap} from "rxjs/operators";
 import * as CryptoJS from 'crypto-js';
+import {map, startWith} from "rxjs";
+import {UsersRequestsService} from "../../services/users-requests.service";
+import {User} from "../../interfaces/user.interface";
 
 @Injectable()
 class MatPaginatorIntlCro extends MatPaginatorIntl {
@@ -29,151 +32,6 @@ class MatPaginatorIntlCro extends MatPaginatorIntl {
   };
 }
 
-interface User {
-  name: string;
-  isAdmin: boolean;
-  startAddress: string;
-  days: any[];
-}
-
-const USER_DATA: User[] = [
-  { name: 'Juan Quintana', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: false},
-      {name: 'V', selected: false},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ]},
-  { name: 'Maria García', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: false},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ]},
-  { name: 'Pedro Lopéz', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: false},
-      {name: 'M', selected: true},
-      {name: 'X', selected: false},
-      {name: 'J', selected: true},
-      {name: 'V', selected: false},
-      {name: 'S', selected: true},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Juan Manuel Fernández', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: true}
-    ] },
-  { name: 'Maria del Carmen Martín', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Ricardo García', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Laura Martínez', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Carmen Rodriguez', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Manolo Sánchez', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Alba González', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Francisco Pérez', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'David Ortega', isAdmin: true, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Jose Luis Rodriguez', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Javier Lopéz', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] },
-  { name: 'Beatriz Pérez ', isAdmin: false, startAddress: 'Av. Las Canteras', days: [
-      {name: 'L', selected: true},
-      {name: 'M', selected: true},
-      {name: 'X', selected: true},
-      {name: 'J', selected: true},
-      {name: 'V', selected: true},
-      {name: 'S', selected: false},
-      {name: 'D', selected: false}
-    ] }
-];
-
 @Component({
   selector: 'app-user-manager',
   templateUrl: './user-manager.component.html',
@@ -185,11 +43,21 @@ const USER_DATA: User[] = [
 export class UserManagerComponent implements OnInit, AfterViewInit {
   searchControl = new FormControl();
   // Ejemplo de datos de usuario
-  dataSource = new MatTableDataSource<User>(USER_DATA);
-  selectedRow: User = USER_DATA[0];
-  isUserDeleted: boolean = false;
-  name: string = this.selectedRow.name;
-  role: boolean = this.selectedRow.isAdmin;
+  dataSource = new MatTableDataSource<User>();
+  selectedRow?: User;
+  isUserDeleted: boolean = true;
+  name?: string;
+  role?: boolean;
+
+  days: any = [
+    {name: 'L', selected: false},
+    {name: 'M', selected: false},
+    {name: 'X', selected: false},
+    {name: 'J', selected: false},
+    {name: 'V', selected: false},
+    {name: 'S', selected: false},
+    {name: 'D', selected: false}
+  ]
 
   displayedColumns: string[] = ['name', 'isAdmin', 'startAddress'];
   pageSize = window.innerHeight < 900 ? 6 : 10;
@@ -201,11 +69,19 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     this.pageSize = window.innerHeight < 900 ? 6 : 10;
     this.paginator._changePageSize(this.pageSize);
   }
-  constructor(public dialog: MatDialog, private httpService: HttpPostServiceService) {}
+  constructor(public dialog: MatDialog, private usersRequests: UsersRequestsService) {}
   ngOnInit() {
-    this.searchControl.valueChanges.subscribe(value => {
-      // Actualizar el filtro de la fuente de datos de la tabla
-      this.dataSource.filter = value;
+    this.usersRequests.getUsersData().pipe(
+      tap((users: User[]) => this.dataSource = new MatTableDataSource(users))
+    ).subscribe(() => {
+      this.searchControl.valueChanges.subscribe(value => {
+        // Actualizar el filtro de la fuente de datos de la tabla
+        this.dataSource.filter = value;
+      });
+    });
+    this.usersRequests.userAdded$.subscribe(() => {
+      // Actualizar la tabla después de agregar el usuario
+      this.updateUserData();
     });
   }
 
@@ -213,10 +89,23 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
+  updateUserData() {
+    this.usersRequests.getUsersData().pipe(
+      tap((users: User[]) => this.dataSource = new MatTableDataSource(users))
+    ).subscribe(() => {
+      this.table.renderRows();
+    });
+  }
+
   openChangePasswordDialog(): void {
     const dialogRef = this.dialog.open(ChangePasswordDialogComponent);
+    let password = null;
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        password = CryptoJS.SHA256(result).toString();
+        this.usersRequests.changePasswordFromServer(this.selectedRow!.name, password);
+      }
       console.log(`Dialog result: ${result}`);
     });
   }
@@ -227,47 +116,20 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        password = CryptoJS.SHA256(result[2]).toString();
-        const newUser = {
-          name: result[0],
-          isAdmin: result[1],
-          startAddress: 'Av. Colocón, 24',
-          days: [
-            {name: 'L', selected: true},
-            {name: 'M', selected: true},
-            {name: 'X', selected: true},
-            {name: 'J', selected: true},
-            {name: 'V', selected: true},
-            {name: 'S', selected: false},
-            {name: 'D', selected: false}
-          ]
-        };
+        this.usersRequests.addUserInServer(result[0], CryptoJS.SHA256(result[2]).toString(), result[1] ? '1' : '0');
 
-        newUser.days.toString = function() {
+        //this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin, startAddress: newUser.startAddress, days: newUser.days });
+        /*newUser.days.toString = function() {
           let result = '';
           for (let i = 0; i < this.length; i++) {
             result += `${this[i].selected ? '1' : '0'},`;
           }
           return result.slice(0, -2);
         };
-
-        this.dataSource.data.push({ name: newUser.name, isAdmin: newUser.isAdmin, startAddress: newUser.startAddress, days: newUser.days });
-        const formData = new FormData();
-        formData.append('token', localStorage.getItem('teacher-token')!);
-        formData.append('username', newUser.name);
-        formData.append('password', password);
-        formData.append('isAdmin', newUser.isAdmin ? '1' : '0');
-        //formData.append('startAddress', newUser.startAddress);
-        //formData.append('days', newUser.days.toString());
-        console.log(newUser.days.toString());
-
-        this.httpService.peticionSever('register', formData).subscribe((resp: any) => {
-            console.log(resp)
-          }
-        );
+        console.log(newUser.days.toString());*/
       }
     });
-    this.table.renderRows();
+
   }
 
   selectRow(row: User) {
@@ -280,26 +142,15 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
   updateUser() {
     if (!this.selectedRow) return;
 
-    console.log(this.name);
-    console.log(this.selectedRow.isAdmin);
+    this.usersRequests.modifyUserDataFromServer(this.selectedRow.name, this.name!, this.role ? '1' : '0');
 
-    this.selectedRow.name = this.name;
-    this.selectedRow.isAdmin = this.role;
-
-    this.dataSource.data = this.dataSource.data.map(user => {
-      if (user === this.selectedRow) {
-        return { ...user, name: this.name, isAdmin: this.role };
-      }
-      return user;
-    });
-    this.table.renderRows();
-    this.clearSelection();
+    this.selectedRow.name = this.name!;
+    this.selectedRow.isAdmin = this.role!;
   }
   deleteUser() {
-    const index = this.dataSource.data.indexOf(this.selectedRow);
-    this.dataSource.data.splice(index, 1);
-    this.dataSource._updateChangeSubscription();
+    this.usersRequests.deleteUserFromServer(this.selectedRow!.name);
     this.clearSelection();
+    this.updateUserData();
   }
   toggleDay(day: any) {
     day.selected = !day.selected;

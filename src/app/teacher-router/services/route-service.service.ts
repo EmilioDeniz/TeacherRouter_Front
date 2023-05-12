@@ -23,7 +23,7 @@ export class RouteService {
     const teacherToken = localStorage.getItem('teacher-token');
     if (teacherToken !== null) {
       formData.append('token', teacherToken);
-      this.httpPost.peticionSever('getRoute', formData).subscribe((response: any) => {
+      this.httpPost.peticionServer('getRoute', formData).subscribe((response: any) => {
         console.log(response)
       });
     }
