@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouteService } from '../../services/route-service.service';
 import { Centre } from '../../services/route-service.service';
 
@@ -8,13 +8,13 @@ import { Centre } from '../../services/route-service.service';
   styleUrls: ['./teacher-home.component.css']
 })
 
-export class TeacherHomeComponent {
+export class TeacherHomeComponent implements OnInit{
 
   centre !: Centre
   centres!: Centre[]
   index!: number
 
-  ngOninit() {
+  ngOnInit() {
     this.centres = this.routeService.getCentres();
     this.index = 0
     this.centre = this.centres[this.index]

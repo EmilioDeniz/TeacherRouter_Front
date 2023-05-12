@@ -20,13 +20,12 @@ export class RouteService {
   getCentres(): Centre[] {
 
     const formData = new FormData();
-    const teacherToken = localStorage.getItem('teacher-token');
-    if (teacherToken !== null) {
-      formData.append('token', teacherToken);
-      this.httpPost.peticionServer('getRoute', formData).subscribe((response: any) => {
-        console.log(response)
-      });
-    }
+    formData.append('token', localStorage.getItem('teacher-token')!);
+
+    this.httpPost.peticionServer('getRoute', formData).subscribe((response: Array<any>) => {
+      console.log(response)
+    });
+
     return this.centres
   }
 
@@ -42,7 +41,7 @@ export class RouteService {
     }
   }
 
-  wasVisited(centre:Centre) {
+  wasVisited(centre: Centre) {
     return false
   }
 }
