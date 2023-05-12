@@ -32,13 +32,13 @@ export class RouteService {
 
   updateCentre(centre: Centre): void {
 
-    const formData = new FormData()
-    const teacherToken = localStorage.getItem('teacher-token')
-    if(teacherToken!== null){
-      formData.append('token',teacherToken)
-      this.httpPost.peticionSever('updateCentre', formData).subscribe((response:any) => {
+    const formData = new FormData();
+    const teacherToken = localStorage.getItem('teacher-token');
+    if (teacherToken !== null) {
+      formData.append('token', teacherToken);
+      this.httpPost.peticionServer('getRoute', formData).subscribe((response: any) => {
         console.log(response)
-      })
+      });
     }
   }
 
