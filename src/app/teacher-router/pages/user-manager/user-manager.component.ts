@@ -10,9 +10,9 @@ import {ThemePalette} from "@angular/material/core";
 import {HttpPostServiceService} from "../../services/http-post-service.service";
 import {tap} from "rxjs/operators";
 import * as CryptoJS from 'crypto-js';
-import {User} from "../../../../environments/environment";
 import {map, startWith} from "rxjs";
 import {UsersRequestsService} from "../../services/users-requests.service";
+import {User} from "../../interfaces/user.interface";
 
 @Injectable()
 class MatPaginatorIntlCro extends MatPaginatorIntl {

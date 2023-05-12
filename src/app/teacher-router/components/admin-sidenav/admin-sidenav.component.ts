@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { map, Observable, startWith } from "rxjs";
-import {User} from "../../../../environments/environment";
-import {HttpPostServiceService} from "../../services/http-post-service.service";
 import {tap} from "rxjs/operators";
 import {UsersRequestsService} from "../../services/users-requests.service";
+import {User} from "../../interfaces/user.interface";
 
 @Component({
   selector: 'app-admin-sidenav',
@@ -30,7 +28,7 @@ export class AdminSidenavComponent implements OnInit {
     {name: 'D', selected: false}
   ];
 
-  constructor(private router: Router, private usersRequests: UsersRequestsService) {}
+  constructor(private usersRequests: UsersRequestsService) {}
 
   ngOnInit() {
     this.usersRequests.getUsersData().pipe(
@@ -52,10 +50,6 @@ export class AdminSidenavComponent implements OnInit {
 
   selectUser(user: User) {
     this.selectedUser = user;
-  }
-
-  goToPage(pageName: string): void {
-    this.router.navigate([`${pageName}`]);
   }
 
   toggleDay(day: any) {

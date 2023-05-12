@@ -7,7 +7,6 @@ import { AdminMenuComponent } from './components/admin-menu/admin-menu.component
 import { AdminSidenavComponent } from './components/admin-sidenav/admin-sidenav.component';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module'
 import { CenterManagerComponent } from './pages/center-manager/center-manager.component';
-import { CreateUserComponent } from './pages/create-user/create-user.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ItemsManagerComponent } from './pages/items-manager/items-manager.component';
@@ -22,7 +21,6 @@ import { CenterLabelComponent } from './components/center-label/center-label.com
 
 @NgModule({
   declarations: [
-    CreateUserComponent,
     UserManagerComponent,
     CenterManagerComponent,
     RouteManagerComponent,
