@@ -16,8 +16,6 @@ export class HttpPostServiceService {
   }
 
   peticionServer(url: string, data: FormData): any{
-
     return this.http.post<any>(`${this.apiUrl}/${url}`, data);
-
   }
 }

@@ -15,8 +15,7 @@ export class AdminHomeComponent {
   lineChart: any;
   doughnutChart: any;
 
-  constructor(private sidenavService: SidenavService, private router: Router) {
-  }
+  constructor(private sidenavService: SidenavService, private router: Router) {}
 
   ngOnInit() {
     this.lineChart = new Chart('lineChart', {

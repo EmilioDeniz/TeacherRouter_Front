@@ -10,6 +10,7 @@ import {ThemePalette} from "@angular/material/core";
 import {HttpPostServiceService} from "../../services/http-post-service.service";
 import {tap} from "rxjs/operators";
 import * as CryptoJS from 'crypto-js';
+import {User} from "../../../../environments/environment";
 
 @Injectable()
 class MatPaginatorIntlCro extends MatPaginatorIntl {
@@ -27,13 +28,6 @@ class MatPaginatorIntlCro extends MatPaginatorIntl {
     }
     return start + ' - ' + end + ' / ' + length;
   };
-}
-
-interface User {
-  name: string;
-  isAdmin: boolean;
-  startAddress: string;
-  days: any[];
 }
 
 @Component({
