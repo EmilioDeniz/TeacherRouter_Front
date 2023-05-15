@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 
 
@@ -7,9 +7,12 @@ import * as L from 'leaflet';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit{
 
   map!: L.Map;
+
+  @Input() latitud:number = 0
+  @Input() longitud:number = 0
 
   constructor() { }
   
@@ -21,9 +24,8 @@ export class MapComponent implements OnInit {
     }
   }
 
-
   initMap() {
-    this.map = L.map('map').setView([28.1300093, -15.4477659], 18);
+    this.map = L.map('map').setView([this.latitud, this.longitud], 18);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
       maxZoom: 60

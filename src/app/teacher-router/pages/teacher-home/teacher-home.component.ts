@@ -10,14 +10,25 @@ import { Centre } from '../../services/route-service.service';
 
 export class TeacherHomeComponent implements OnInit{
 
-  centre !: Centre
-  centres!: Centre[]
-  index!: number
+  centre: Centre = { 
+    centername: "",
+    calle: "",
+    latitud: 0,
+    longitud: 0,
+    orden: 0,
+    username: "",
+    id: 0
+  }
+  centres! : Centre[];
 
   ngOnInit() {
-    this.centres = this.routeService.getCentres();
-    this.index = 0
-    this.centre = this.centres[this.index]
+    this.centres = []
+    this.routeService.getCentres().subscribe((route) => {
+      this.centres = route.route;
+      console.log(this.centres);
+    
+      this.centre = this.centres[0]
+    });
   }
 
   constructor(private routeService: RouteService) {
@@ -28,20 +39,21 @@ export class TeacherHomeComponent implements OnInit{
     this.routeService.updateCentre(this.centre);
   }
 
-  nextCentre() {
-    if (this.index < this.centres.length - 1) {
-      this.index += 1
+  nextCentre(stepper:any) {
+    if (stepper.selectedIndex < this.centres.length - 1) {
+  
+      stepper.selectedIndex +=1
       if (!this.routeService.wasVisited(this.centre)) {
         this.updateVisited()
       }
-      this.centre = this.centres[this.index]
+      this.centre = this.centres[stepper.selectedIndex]
     }
   }
 
-  previousCentre() {
-    if (this.index >= 1) {
-      this.index -= 1
-      this.centre = this.centres[this.index]
+  previousCentre(stepper:any) {
+    if (stepper.selectedIndex >= 0) {
+      stepper.selectedIndex -=1
+      this.centre = this.centres[stepper.selectedIndex]
     }
   }
 

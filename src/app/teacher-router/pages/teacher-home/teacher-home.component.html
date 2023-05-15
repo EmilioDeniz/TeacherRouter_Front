@@ -1,24 +1,24 @@
 <app-header></app-header>
-<mat-stepper #stepper *ngFor="let centre of centres">
-  <mat-step>
+<mat-stepper #stepper>
+  <mat-step  *ngFor="let centre of centres">
     <div class="main">
-      <h1>{{centre.centreName}}</h1>
-      <p class="arrive-text">{{centre.street}}</p>
+      <h1>{{centre.centername}}</h1>
+      <p class="arrive-text">{{centre?.calle}}</p>
+    </div>
+  </mat-step>
+</mat-stepper>
 
       <div class="app-map">
-        <app-map></app-map>
+        <app-map [latitud]="centre.latitud" [longitud]="centre.longitud"></app-map>
       </div>
 
       <div class="arrive-button">
         <button>Abrir en maps</button>
       </div>
       <div class="buttons">
-        <button (click)="previousCentre()"> Anterior</button>
-        <button (click)="nextCentre()"> Siguiente</button>
+        <button (click)="previousCentre(stepper)" [disabled]="stepper.selectedIndex === 0"> Anterior</button>
+        <button (click)="nextCentre(stepper)" [disabled]="stepper.selectedIndex === centres.length -1"> Siguiente</button>
       </div>
 
       <p class="finish">Terminar jornada laboral</p>
-    </div>
-  </mat-step>
-</mat-stepper>
 <app-footer></app-footer>
