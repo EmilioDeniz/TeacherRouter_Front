@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpPostServiceService } from './http-post-service.service';
+import { Observable } from 'rxjs';
 
 export interface Centre {
-  centreName: string;
-  street: string;
-  latitude: number
-  longitude: number
+  centername: string;
+  direction?: string;
+  latitud: number
+  longitud: number
+  id?:number
 }
 
 @Injectable({
@@ -17,31 +19,16 @@ export class RouteService {
 
   constructor(private http: HttpClient, private httpPost: HttpPostServiceService) { }
 
-  getCentres(): Centre[] {
+  getCentres(): Observable<any> {
 
     const formData = new FormData();
     formData.append('token', localStorage.getItem('teacher-token')!);
 
-    this.httpPost.peticionServer('getRoute', formData).subscribe((response: Array<any>) => {
-      console.log(response)
-    });
+    return this.httpPost.peticionServer('getRoute', formData)
 
-    return this.centres
   }
 
   updateCentre(centre: Centre): void {
-
-    const formData = new FormData();
-    const teacherToken = localStorage.getItem('teacher-token');
-    if (teacherToken !== null) {
-      formData.append('token', teacherToken);
-      this.httpPost.peticionServer('getRoute', formData).subscribe((response: any) => {
-        console.log(response)
-      });
-    }
-  }
-
-  wasVisited(centre: Centre) {
-    return false
+    
   }
 }
