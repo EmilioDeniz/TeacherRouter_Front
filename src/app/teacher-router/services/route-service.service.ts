@@ -8,8 +8,6 @@ export interface Centre {
   calle?: string;
   latitud: number
   longitud: number
-  orden?: number
-  username?:string
   id?:number
 }
 
@@ -32,9 +30,5 @@ export class RouteService {
 
   updateCentre(centre: Centre): void {
     
-  }
-
-  wasVisited(centre: Centre) {
-    return false
   }
 }
