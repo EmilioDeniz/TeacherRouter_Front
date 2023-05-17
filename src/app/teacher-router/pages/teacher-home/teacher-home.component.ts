@@ -13,7 +13,7 @@ export class TeacherHomeComponent implements OnInit {
 
   centre: Centre = {
     centername: "",
-    calle: "",
+    direction: "",
     latitud: 0,
     longitud: 0,
     id: 0
@@ -23,7 +23,7 @@ export class TeacherHomeComponent implements OnInit {
   ngOnInit() {
     this.centres = []
     this.routeService.getCentres().subscribe((route) => {
-      this.centres = route.route;
+      this.centres = route.routes;
       console.log(this.centres);
 
       this.centre = this.centres[0]

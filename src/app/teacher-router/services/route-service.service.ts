@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 export interface Centre {
   centername: string;
-  calle?: string;
+  direction?: string;
   latitud: number
   longitud: number
   id?:number
