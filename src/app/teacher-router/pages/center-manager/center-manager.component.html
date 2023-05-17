@@ -28,11 +28,9 @@
 
         <input matInput type="text" placeholder="Nombre del centro" value={{selectedCenter.Name}}
           formControlName="newName" (input)="modified = true" class="center-data" required>
-        <input type="text" placeholder="Localización" value={{selectedCenter.Location}} formControlName="newLocation"
-          (input)="modified = true" class="center-data" required>
         <input type="text" placeholder="Dirección" value={{selectedCenter.Address}} formControlName="newAddress"
           (input)="modified = true" class="center-data" required>
-        <input type="text" placeholder="Tipo" value={{selectedCenter.Type}} formControlName="newType"
+        <input type="text" placeholder="Email" value={{selectedCenter.Email}} formControlName="newEmail"
           (input)="modified = true" class="center-data" required>
 
 
@@ -40,7 +38,7 @@
 
       <div class="data-buttons">
         <button *ngIf="!selectedCenter.Name" type="submit" [disabled]="!modified || centerData.invalid" id="add">
-          {{selectedCenter.Name ? 'Editar centro' : 'Añadir centro'}}
+          {{selectedCenter.Name ? 'tar centro' : 'Añadir centro'}}
         </button>
 
         <button *ngIf="selectedCenter.Name" type="submit" [disabled]="!modified || !centerData.dirty" id="add">
