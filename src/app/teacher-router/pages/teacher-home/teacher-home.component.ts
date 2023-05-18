@@ -10,7 +10,6 @@ import Swal from 'sweetalert2';
 })
 
 export class TeacherHomeComponent implements OnInit {
-
   centre: Centre = {
     centername: "",
     direction: "",
@@ -35,12 +34,12 @@ export class TeacherHomeComponent implements OnInit {
   }
 
   updateVisited() {
-    this.routeService.updateCentre(this.centre);
+    this.routeService.updateCentre(this.centre.id);
   }
 
   nextCentre(stepper: any) {
     if (stepper.selectedIndex < this.centres.length - 1) {
-      showConfirmPopUp()
+      this.showConfirmPopUp()
       stepper.selectedIndex += 1
       this.centre = this.centres[stepper.selectedIndex]
     }
@@ -53,22 +52,34 @@ export class TeacherHomeComponent implements OnInit {
     }
   }
 
+  showConfirmPopUp() {
+    Swal.fire({
+      title: '¿Has visitado ya este centro?',
+      text: 'Puedes confirmarlo o ver cuál es el siguiente centro',
+      confirmButtonText: 'Confirmar',
+      icon: 'info',
+      cancelButtonText: 'Previsualizar',
+      showCancelButton: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        return Swal.fire({
+          title: '¿Está seguro?',
+          confirmButtonText: 'Sí',
+          showCancelButton: true,
+          cancelButtonText: 'No',
+          icon: 'warning'
+        });
+      } else {
+        return undefined;
+      }
+    }).then((result) => {
+      if (result?.isConfirmed) {
+        this.updateVisited(); 
+      }
+    });
+  }
 }
-function showConfirmPopUp() {
-  Swal.fire({
-    title: '¿Has visitado ya este centro?',
-    text: 'Puedes confirmarlo o ver cual es el siguiente centro',
-    cancelButtonText: 'Previsualizar', showCancelButton: true,
-    confirmButtonText: 'Confirmar', icon: 'info',
-    preConfirm: () => [
-      
-    ]
-  }).then(() => Swal.fire({
-    title: '¿Está seguro?',
-    confirmButtonText: 'Sí',
-    showCancelButton: true,
-    cancelButtonText: 'No',
-    icon: 'warning'
-  }))
-}
+
+
+
 

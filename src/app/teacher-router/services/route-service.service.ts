@@ -8,7 +8,7 @@ export interface Centre {
   direction?: string;
   latitud: number
   longitud: number
-  id?:number
+  id:number
 }
 
 @Injectable({
@@ -28,7 +28,13 @@ export class RouteService {
 
   }
 
-  updateCentre(centre: Centre): void {
-    
+  updateCentre(id:number): void {
+    // Por si se llega a implementar, dejo esto hecho...
+
+    // const formData =new FormData();
+    // formData.append('token', localStorage.getItem('teacher-token')!);
+    // formData.append('id',id.toString())
+    // this.httpPost.peticionServer('updateVisited', formData)
+
   }
 }
