@@ -2,19 +2,19 @@
 <div id="content">
   <div class="centers-list-container">
 
-    <input [formControl]="searchControl" placeholder="Buscar centro..." class="search">
+    <input [(ngModel)]="searchValue" placeholder="Buscar centro..." class="search" (input)="searchCenters()">
 
     <mat-radio-group class="centers-list" [(ngModel)]="selectedCenter">
 
-      <mat-radio-button class="center" *ngFor="let center of centers" [value]="center">
+      <mat-radio-button class="center" *ngFor="let center of filteredCenters" [value]="center">
 
-        <label class="radio-label">{{center.Name}}</label>
+        <label class="radio-label">{{center.nombre}}</label>
 
       </mat-radio-button>
 
     </mat-radio-group>
 
-    <button *ngIf="selectedCenter.Name" (click)="emptyCenter()" class="delete">
+    <button [disabled]="!selectedCenter.nombre" (click)="emptyCenter()" class="delete">
       Borrar selección
     </button>
 
@@ -26,26 +26,24 @@
 
       <div class="data-text">
 
-        <input matInput type="text" placeholder="Nombre del centro" value={{selectedCenter.Name}}
-          formControlName="newName" (input)="modified = true" class="center-data" required>
-        <input type="text" placeholder="Dirección" value={{selectedCenter.Address}} formControlName="newAddress"
-          (input)="modified = true" class="center-data" required>
-        <input type="text" placeholder="Email" value={{selectedCenter.Email}} formControlName="newEmail"
+        <input type="text" placeholder="Nombre del centro" value={{selectedCenter.nombre}} class="center-data" readonly>
+        <input type="text" placeholder="Dirección" value={{selectedCenter.direccion}} class="center-data" readonly>
+        <input type="text" placeholder="Email" value={{selectedCenter.correo}} formControlName="newEmail"
           (input)="modified = true" class="center-data" required>
 
 
       </div>
 
       <div class="data-buttons">
-        <button *ngIf="!selectedCenter.Name" type="submit" [disabled]="!modified || centerData.invalid" id="add">
-          {{selectedCenter.Name ? 'tar centro' : 'Añadir centro'}}
+        <button *ngIf="!selectedCenter.nombre" type="submit" [disabled]="!modified" id="add">
+          {{selectedCenter.nombre ? 'Editar centro' : 'Añadir centro'}}
         </button>
 
-        <button *ngIf="selectedCenter.Name" type="submit" [disabled]="!modified || !centerData.dirty" id="add">
-          {{selectedCenter.Name ? 'Editar centro' : 'Añadir centro'}}
+        <button *ngIf="selectedCenter.nombre" type="submit" [disabled]="!modified || !centerData.dirty" id="add">
+          {{selectedCenter.nombre ? 'Editar centro' : 'Añadir centro'}}
         </button>
 
-        <button *ngIf="selectedCenter.Name" id="remove" (click)="deleteCenter()"
+        <button *ngIf="selectedCenter.nombre" id="remove" (click)="deleteCenter()"
           [disabled]="selectedCenter == null">Eliminar centro centro</button>
 
       </div>
