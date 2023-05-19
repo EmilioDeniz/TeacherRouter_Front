@@ -3,13 +3,13 @@
 
   <div class="material-list-container">
 
-    <input type="text" placeholder="Bucar material..." class="search">
+    <input [(ngModel)]="searchValue" placeholder="Buscar material..." class="search" (input)="searchMaterial()">
 
     <div>
       <mat-selection-list class="materials-list" [(ngModel)]="selectedMaterials">
-        <mat-list-option class="material" *ngFor="let material of materials" [value]="material"
+        <mat-list-option class="material" *ngFor="let material of filteredMaterials" [value]="material"
           checkboxPosition="before">
-          {{material.Name}}
+          {{material.name}}
         </mat-list-option>
       </mat-selection-list>
 
@@ -22,12 +22,12 @@
     <form (ngSubmit)="saveMaterial()" [formGroup]="materialData" name="materialData">
       <div class="data-text">
 
-        <input matInput type="text" placeholder="Nombre del nuevo material" value={{getLastMaterial().Name}}
+        <input matInput type="text" placeholder="Nombre del nuevo material" value={{getLastMaterial().name}}
           formControlName="newName" (input)="modified = true" class="material-data" required>
         <div>
 
           <label for="newMaterial">Descripción del material:</label>
-          <textarea value={{getLastMaterial().Description}} formControlName="newDescription" (input)="modified = true"
+          <textarea value={{getLastMaterial().description}} formControlName="newDescription" (input)="modified = true"
             class="material-data" id="description" required></textarea>
         </div>
       </div>
@@ -62,7 +62,7 @@
 
         <ul *ngFor="let usedMaterial of usedMaterials">
           <li>
-            {{usedMaterial.Name}}
+            {{usedMaterial.name}}
           </li>
         </ul>
       </div>
