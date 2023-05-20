@@ -28,8 +28,12 @@ export class HeaderComponent {
   }
 
   logOut(){
-    localStorage.removeItem('teacher-token');
-    this.router.navigateByUrl('/');
+    this.auth.logout().subscribe((response) => {
+      // if(response.ok){
+      //   this.router.navigateByUrl('/');
+      // }
+      
+    })
   }
 
   isAdmin() {

@@ -49,8 +49,10 @@ export class LoginComponent {
       const { username, password } = this.form.value;
       const encryptedPassword = CryptoJS.SHA256(password).toString();
 
-      this.authService.login(username, encryptedPassword).subscribe((event)=> {         
-        this.router.navigateByUrl('/main')
+      this.authService.login(username, encryptedPassword).subscribe((event)=> {
+
+        console.log("");
+        
       })
     }
   }
