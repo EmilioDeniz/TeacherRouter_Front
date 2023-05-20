@@ -28,5 +28,5 @@
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button (click)="addUser()">Añadir usuario</button>
+  <button mat-button (click)="addUser()" [disabled]="addDisabled">Añadir usuario</button>
 </div>

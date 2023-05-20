@@ -1,58 +1,24 @@
 <app-header></app-header>
 <mat-stepper #stepper>
-  <mat-step>
+  <mat-step  *ngFor="let centre of centres">
     <div class="main">
-      <h1>Nombre del centro</h1>
-      <p class="arrive-text">Avda Aleatoria nº 20, 35424, Las Palmas</p>
-
-      <div class="app-map">
-        <app-map></app-map>
-      </div>
-
-      <div class="arrive-button">
-        <button>Abrir en maps</button>
-      </div>
-      <div class="buttons">
-        <button> Anterior</button>
-        <button> Siguiente</button>
-      </div>
-
-      <p class="finish">Terminar jornada laboral</p>
+      <h1>{{centre.centername}}</h1>
+      <p class="arrive-text">{{centre?.direction}}</p>
     </div>
-  </mat-step>
-
-  <mat-step>
-    <div class="main">
-      <h1>Nombre del centro</h1>
-      <p id="arrive-text">Avda Aleatoria nº 20, 35424, Las Palmas</p>
-
-      <div class="app-map">
-        <app-map></app-map>
-      </div>
-
-      <div class="arrive-button">
-        <button>Abrir en maps</button>
-      </div>
-      <div class="buttons">
-        <button> Anterior</button>
-        <button (click)="updateVisited()"> Siguiente</button>
-      </div>
-
-      <p class="finish">Terminar jornada laboral</p>
-    </div>
-
-  </mat-step>
-
-  <mat-step>
-
-  </mat-step>
-
-  <mat-step>
-
-  </mat-step>
-
-  <mat-step>
-
   </mat-step>
 </mat-stepper>
+
+      <div class="app-map">
+        <app-map [latitud]="centre.latitud" [longitud]="centre.longitud"></app-map>
+      </div>
+
+      <div class="arrive-button">
+        <button>Abrir en maps</button>
+      </div>
+      <div class="buttons">
+        <button (click)="previousCentre(stepper)" [disabled]="stepper.selectedIndex === 0"> Anterior</button>
+        <button (click)="nextCentre(stepper)" [disabled]="stepper.selectedIndex === centres.length -1"> Siguiente</button>
+      </div>
+
+      <p class="finish">Terminar jornada laboral</p>
 <app-footer></app-footer>

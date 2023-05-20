@@ -1,12 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-interface Center {
-  Id: number;
-  Name: string;
-  Location: string;
-  Address: string;
-  Type: string;
-}
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Center } from '../../interfaces/center.interface';
+import { CentersRequestsService } from '../../services/centers-requests.service';
+import { RouteService } from '../../services/route-service.service';
+
 @Component({
   selector: 'app-center-manager',
   templateUrl: './center-manager.component.html',
@@ -15,153 +12,93 @@ interface Center {
 })
 export class CenterManagerComponent {
 
-  centerData!: FormGroup;
-  searchControl = new FormControl();
+  constructor(private fb: FormBuilder, private routeService: RouteService, private centersRequests: CentersRequestsService) { }
 
-  constructor(private fb: FormBuilder) { }
+  centers!: Center[];
+  centerData!: FormGroup;
+  selectedCenter!: Center;
+
+  searchValue!: string;
+  filteredCenters?: Center[];
+
+  modified = false;
+  newEmail: string = '';
 
   ngOnInit() {
-    this.searchControl.valueChanges.subscribe(value => {
-      this.centers.filter = value;
-    });
+    this.centersRequests.getCenters().subscribe((centers) => (
+      this.centers = centers.centers,
+      this.filteredCenters = this.centers
+    ));
+
     this.centerData = this.fb.group({
-      newName: ['', Validators.required],
-      newLocation: ['', Validators.required],
-      newAddress: ['', Validators.required],
-      newType: ['', Validators.required],
+      newEmail: ['', Validators.required],
     });
-    this.selectedCenter = {
-      Id: 0,
-      Name: '',
-      Location: '',
-      Address: '',
-      Type: ''
-    };
+    this.emptyCenter();
+
 
   }
 
-  newCenter!: Center;
-  selectedCenter!: Center;
-  modified = false;
+  searchCenters() {
+    this.filteredCenters = this.centers.filter(center => {
+      const nombre = center.nombre.toLowerCase();
+      const search = this.searchValue.toLowerCase();
 
+      const normalizedNombre = nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const normalizedSearch = search.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-  newName: string = '';
-  newLocation: string = '';
-  newAddress: string = '';
-  newType: string = '';
-
-  centers: Center[] = [
-    {
-      Id: 0,
-      Name: 'Centro 1',
-      Location: 'Ciudad 1',
-      Address: 'Calle 1',
-      Type: 'Colegio',
-    },
-    {
-      Id: 1,
-      Name: 'Centro 2',
-      Location: 'Ciudad 2',
-      Address: 'Calle 2',
-      Type: 'Instituto',
-    },
-    {
-      Id: 2,
-      Name: 'Centro 3',
-      Location: 'Ciudad 3',
-      Address: 'Calle 3',
-      Type: 'Colegio',
-    },
-    {
-      Id: 3,
-      Name: 'Centro 4',
-      Location: 'Ciudad 4',
-      Address: 'Calle 4',
-      Type: 'Colegio',
-    },
-    {
-      Id: 4,
-      Name: 'Centro 5',
-      Location: 'Ciudad 5',
-      Address: 'Calle 5',
-      Type: 'Instituto',
-    },
-  ];
+      return normalizedNombre.includes(normalizedSearch);
+    });
+  }
 
   emptyCenter() {
 
     this.centerData.reset();
 
     this.selectedCenter = {
-      Id: 0,
-      Name: '',
-      Location: '',
-      Address: '',
-      Type: ''
+      id: -1,
+      nombre: '',
+      direccion: '',
+      correo: ''
     };
-    this.newCenter = {
-      Id: 0,
-      Name: '',
-      Location: '',
-      Address: '',
-      Type: ''
-    };
-
     this.modified = false;
-
-  }
-
-  editCenter() {
-    console.log(this.selectedCenter);
-    const updatedCenter: Center = {
-      Id: this.selectedCenter.Id,
-      Name: this.newName || this.selectedCenter.Name,
-      Location: this.newLocation || this.selectedCenter.Location,
-      Address: this.newAddress || this.selectedCenter.Address,
-      Type: this.newType || this.selectedCenter.Type
-    };
-
-    const index = this.centers.findIndex(center => center.Id === this.selectedCenter.Id);
-    if (index !== -1) {
-      this.centers[index] = updatedCenter;
-      this.modified = true;
-    }
-
-    this.emptyCenter();
-    this.modified = true;
 
   }
 
   saveCenter() {
 
-    if (this.selectedCenter.Name == '') {
-      this.newCenter = {
-        Id: this.centers[this.centers.length - 1].Id + 1,
-        Name: this.centerData.value.newName,
-        Location: this.centerData.value.newLocation,
-        Address: this.centerData.value.newAddress,
-        Type: this.centerData.value.newType,
-      };
-      this.centers.push(this.newCenter);
-    } else {
-      this.newCenter = {
-        Id: this.selectedCenter.Id,
-        Name: this.centerData.value.newName || this.selectedCenter.Name,
-        Location: this.centerData.value.newLocation || this.selectedCenter.Location,
-        Address: this.centerData.value.newAddress || this.selectedCenter.Address,
-        Type: this.centerData.value.newType || this.selectedCenter.Type,
-      };
-      const index = this.centers.findIndex(center => center.Id === this.selectedCenter.Id);
-      this.centers[index] = this.newCenter;
-    }
+    // if (this.selectedCenter.nombre == '') {
+    //   this.newCenter = {
+    //     id: this.centers[this.centers.length - 1].id + 1,
+    //     nombre: this.centerData.value.newName,
+    //     direccion: this.centerData.value.newAddress,
+    //     correo: this.centerData.value.newEmail,
+    //   };
 
-    this.emptyCenter();
+    //   this.centersRequests.addCenter(this.newCenter);
+    // } else {
+    //   this.newCenter = {
+    //     id: this.selectedCenter.id,
+    //     nombre: this.centerData.value.newName || this.selectedCenter.nombre,
+    //     direccion: this.centerData.value.newAddress || this.selectedCenter.direccion,
+    //     correo: this.centerData.value.newEmail || this.selectedCenter.correo,
+    //   };
+
+    this.newEmail = this.centerData.value.newEmail
+    const index = this.centers.findIndex(center => center.id === this.selectedCenter.id);
+
+    this.centersRequests.editCenter(this.centers[index].correo, this.newEmail);
+
+    this.centersRequests.getCenters().subscribe((centers) => (
+      this.centers = centers.centers,
+      this.ngOnInit()
+    ));
+
   }
 
   deleteCenter() {
-    const index = this.centers.findIndex(center => center.Id === this.selectedCenter.Id);
-    console.log(index)
-    this.centers.splice(index, 1);
+    // const index = this.centers.findIndex(center => center.id === this.selectedCenter.id);
+    // console.log(index)
+    // this.centers.splice(index, 1);
 
   }
 

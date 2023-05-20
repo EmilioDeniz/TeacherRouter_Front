@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpPostServiceService } from './http-post-service.service';
+import { Observable } from 'rxjs';
 
 export interface Centre {
-  centreName: string;
-  street: string;
-  latitude: number
-  longitude: number
+  centername: string;
+  direction?: string;
+  latitud: number
+  longitud: number
+  id:number
 }
 
 @Injectable({
@@ -14,21 +17,24 @@ export interface Centre {
 export class RouteService {
   private centres !: Centre[]
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private httpPost: HttpPostServiceService) { }
 
-  getCentres(): Centre[] {
-    const url = 'http://138.68.130.127:5000'
+  getCentres(): Observable<any> {
 
     const formData = new FormData();
-    const teacherToken = localStorage.getItem('teacher-token');
-    if (teacherToken !== null) {
-      formData.append('teacher-token', teacherToken);
-    }
+    formData.append('token', localStorage.getItem('teacher-token')!);
 
-    return this.centres
+    return this.httpPost.peticionServer('getRoute', formData)
+
   }
 
-  updateCentre(centre: Centre): void {
-    
+  updateCentre(id:number): void {
+    // Por si se llega a implementar, dejo esto hecho...
+
+    // const formData =new FormData();
+    // formData.append('token', localStorage.getItem('teacher-token')!);
+    // formData.append('id',id.toString())
+    // this.httpPost.peticionServer('updateVisited', formData)
+
   }
 }

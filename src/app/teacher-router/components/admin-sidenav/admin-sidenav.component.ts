@@ -1,30 +1,22 @@
-import { Component } from '@angular/core';
-import { Router } from "@angular/router";
+import {Component, OnInit} from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { map, Observable, startWith } from "rxjs";
-
-interface User {
-  name: string;
-  email: string;
-  id: number;
-}
+import {tap} from "rxjs/operators";
+import {UsersRequestsService} from "../../services/users-requests.service";
+import {User} from "../../interfaces/user.interface";
 
 @Component({
   selector: 'app-admin-sidenav',
   templateUrl: './admin-sidenav.component.html',
   styleUrls: ['./admin-sidenav.component.css']
 })
-export class AdminSidenavComponent {
+
+export class AdminSidenavComponent implements OnInit {
   searchControl = new FormControl();
-  filteredUsers: Observable<User[]>;
-  selectedUser?: User;
+  users!: User[];
+  filteredUsers!: Observable<User[]>;
+  selectedUser!: User;
   // Ejemplo de datos de usuario
-  users: User[] = [
-    { name: 'Juan', email: 'juan@example.com', id: 1 },
-    { name: 'Maria', email: 'maria@example.com', id: 2 },
-    { name: 'Pedro', email: 'pedro@example.com', id: 3 }
-    // ...
-  ];
 
   days = [
     {name: 'L', selected: false},
@@ -36,15 +28,19 @@ export class AdminSidenavComponent {
     {name: 'D', selected: false}
   ];
 
-  constructor(private router: Router) {
-    this.filteredUsers = this.searchControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this.filterUsers(value))
-    );
-  }
+  constructor(private usersRequests: UsersRequestsService) {}
 
   ngOnInit() {
-    this.selectedUser = this.users[0];
+    this.usersRequests.getUsersData().pipe(
+      tap((users: User[]) => this.users = users)
+    ).subscribe(() => {
+      console.log(this.users);
+      this.selectedUser = this.users[0];
+      this.filteredUsers = this.searchControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this.filterUsers(value))
+      );
+    });
   }
 
   filterUsers(value: any) {
@@ -54,10 +50,6 @@ export class AdminSidenavComponent {
 
   selectUser(user: User) {
     this.selectedUser = user;
-  }
-
-  goToPage(pageName: string): void {
-    this.router.navigate([`${pageName}`]);
   }
 
   toggleDay(day: any) {
