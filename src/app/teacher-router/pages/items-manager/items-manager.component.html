@@ -13,7 +13,11 @@
         </mat-list-option>
       </mat-selection-list>
 
+
     </div>
+    <button [disabled]="!getLastMaterial().name" (click)="resetSelected()" class="delete">
+      Borrar selección
+    </button>
 
   </div>
 
