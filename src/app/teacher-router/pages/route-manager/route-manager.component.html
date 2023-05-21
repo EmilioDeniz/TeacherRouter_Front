@@ -1,3 +1,28 @@
 <app-header></app-header>
 
+<div class="menu-container">
+  <div>
+    <h2>Rutas</h2>
+    <ul>
+      <li *ngFor="let route of routes; index as i">
+        <button (click)="showRoute(i)">Ruta {{ i+1 }}</button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="map-container">
+    <div id="map" leaflet 
+         [leafletOptions]="options" 
+         [leafletLayers]="layers"></div>
+  </div>
+</div>
+
+<div class="generalContainer">
+  <select [(ngModel)]="selectedUser">
+    <option *ngFor="let user of users">{{ user }}</option>
+    <option value="">ninguno</option>
+  </select>
+  <button (click)="assign()">Asignar</button>
+</div>
+
 <app-footer></app-footer>

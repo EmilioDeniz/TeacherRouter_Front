@@ -9,6 +9,11 @@
     align-items: center;
 }
 
+.map-container {
+    width: 75%;
+    height: 600px;
+}
+
 .full-width {
     width: 100%;
 }
