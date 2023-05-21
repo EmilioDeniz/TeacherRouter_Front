@@ -16,17 +16,17 @@
 .container {
     min-height: 100vh;
     min-width: 100vw;
-    
-}
-
-.responsive {
-    min-height: 100vh;
-    min-width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .grupos {
     min-width: 400px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
