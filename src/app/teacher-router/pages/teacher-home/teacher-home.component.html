@@ -12,9 +12,7 @@
         <app-map [latitud]="centre.latitud" [longitud]="centre.longitud"></app-map>
       </div>
 
-      <div class="arrive-button">
-        <button>Abrir en maps</button>
-      </div>
+  
       <div class="buttons">
         <button (click)="previousCentre(stepper)" [disabled]="stepper.selectedIndex === 0"> Anterior</button>
         <button (click)="nextCentre(stepper)" [disabled]="stepper.selectedIndex === centres.length -1"> Siguiente</button>
