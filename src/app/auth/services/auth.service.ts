@@ -53,12 +53,14 @@ export class AuthService {
   }
 
   logout(){
-    const formData = new FormData()
-    let token = localStorage.getItem('teacher-token')!
-    formData.append("teacher-token", token);
 
-    console.log("cerrar sesion token:",token);
+    this.router.navigateByUrl('/');
+    // const formData = new FormData()
+    // let token = localStorage.getItem('teacher-token')!
+    // formData.append("teacher-token", token);
 
-    return this.http.post<any>(`${this.apiUrl}/cerrarSesion`, formData)
+    // console.log("cerrar sesion token:",token);
+
+    // return this.http.post<any>(`${this.apiUrl}/cerrarSesion`, formData)
   }
 }

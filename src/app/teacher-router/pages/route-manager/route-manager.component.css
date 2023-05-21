@@ -12,3 +12,21 @@
 .full-width {
     width: 100%;
 }
+
+.container {
+    min-height: 100vh;
+    min-width: 100vw;
+    
+}
+
+.responsive {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grupos {
+    min-width: 400px;
+}

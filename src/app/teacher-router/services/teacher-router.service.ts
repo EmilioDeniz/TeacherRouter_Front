@@ -51,4 +51,33 @@ export class TeacherRouterService {
   logout(): void {
     localStorage.removeItem('teacher-token');
   }
+
+  getRouteGroups(){
+
+    let token = localStorage.getItem('teacher-token')!
+    let tokenData = new FormData();
+
+    tokenData.append('token', token);
+    return this.http.post(`${this.url}/getRouteGroups`, tokenData )
+
+  }
+
+  getUsers(){
+    let token = localStorage.getItem('teacher-token')!
+    let tokenData = new FormData();
+
+    tokenData.append('token', token);
+    return this.http.post(`${this.url}/getUsersData`, tokenData )
+  }
+
+  setRouteToUser(selectedRouteGroupValue: string, selectedUserValue: string){
+    let token = localStorage.getItem('teacher-token')!
+    let tokenData = new FormData();
+
+    tokenData.append('token', token);
+    tokenData.append('groupnumber', selectedRouteGroupValue.toString());
+    tokenData.append('username', selectedUserValue);
+
+    return this.http.post(`${this.url}/setRouteToUser`, tokenData )
+  }
 }

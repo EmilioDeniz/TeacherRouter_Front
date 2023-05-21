@@ -1,3 +1,35 @@
 <app-header></app-header>
 
+
+<div class="container">
+    <div class="responsive">
+        <div class="grupos">
+            <mat-form-field>
+                <mat-label>Lista de Usuarios</mat-label>
+                <mat-select [(ngModel)]="selectedUserValue" name="selectedUserValue">
+                  <mat-option *ngFor="let user of userList" [value]="user.username">
+                    {{user.username}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <h1> Usuario escogido: {{selectedUserValue}}</h1>
+        </div>
+        <div class="grupos">
+            <mat-form-field>
+                <mat-label>Lista de Rutas</mat-label>
+                <mat-select [(ngModel)]="selectedRouteGroupValue" name="selectedRouteGroupValue">
+                  <mat-option *ngFor="let route of routeGroups" [value]="route">
+                    {{route}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <h1> Grupo de ruta escogido: {{selectedRouteGroupValue}}</h1>
+        </div>
+        <button mat-raised-button color="primary" (click)="setRouteToUser()" >Establecer ruta</button>
+    </div>
+   
+
+
+</div>
+
 <app-footer></app-footer>
