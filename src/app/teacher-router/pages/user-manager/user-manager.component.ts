@@ -103,7 +103,11 @@ export class UserManagerComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        password = CryptoJS.SHA256(result).toString();
+        console.log("result: ", result);
+        
+        password = CryptoJS.SHA256(result.newPassword).toString();
+        console.log("password: ", password);
+        
         this.usersRequests.changePasswordFromServer(this.selectedRow!.name, password);
       }
       console.log(`Dialog result: ${result}`);
