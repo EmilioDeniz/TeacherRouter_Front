@@ -95,11 +95,11 @@ export class CenterManagerComponent {
 
   }
 
-  deleteCenter() {
-    // const index = this.centers.findIndex(center => center.id === this.selectedCenter.id);
-    // console.log(index)
-    // this.centers.splice(index, 1);
+  // deleteCenter() {
+  //   const index = this.centers.findIndex(center => center.id === this.selectedCenter.id);
+  //   console.log(index)
+  //   this.centers.splice(index, 1);
 
-  }
+  // }
 
 }

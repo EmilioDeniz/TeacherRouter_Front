@@ -65,10 +65,12 @@
   bottom: 8%;
   left: 19%;
   height: 4vh;
+  padding: 1vh 1vw;
+  width: 10vw;
   border: 2px solid black;
   border-radius: 5px;
   background-color: transparent;
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.30);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
 }
 .delete:hover {
   background-color: wheat;
@@ -113,13 +115,9 @@
   height: 7.5vh;
   border: 2px solid #373737;
 }
-
-.data-buttons button:hover {
-  cursor: pointer;
-}
 #add {
   background-color: #7596f5;
 }
-#remove {
-  background-color: #f57e7a;
-}
+#add:hover {
+  background-color: #5b76c2;
+  cursor: pointer;}

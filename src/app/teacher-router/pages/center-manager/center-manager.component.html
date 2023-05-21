@@ -35,16 +35,13 @@
       </div>
 
       <div class="data-buttons">
-        <button *ngIf="!selectedCenter.nombre" type="submit" [disabled]="!modified" id="add">
-          {{selectedCenter.nombre ? 'Editar centro' : 'Añadir centro'}}
+
+        <button type="submit" [disabled]="!modified || !centerData.dirty" id="add">
+          Editar centro
         </button>
 
-        <button *ngIf="selectedCenter.nombre" type="submit" [disabled]="!modified || !centerData.dirty" id="add">
-          {{selectedCenter.nombre ? 'Editar centro' : 'Añadir centro'}}
-        </button>
-
-        <button *ngIf="selectedCenter.nombre" id="remove" (click)="deleteCenter()"
-          [disabled]="selectedCenter == null">Eliminar centro centro</button>
+        <!-- <button *ngIf="selectedCenter.nombre" id="remove" (click)="deleteCenter()"
+          [disabled]="selectedCenter == null">Eliminar centro centro</button> -->
 
       </div>
 

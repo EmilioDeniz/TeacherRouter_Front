@@ -108,7 +108,6 @@ export class ItemsManagerComponent {
   }
 
   emptyList() {
-    this.resetSelected();
     this.usedMaterials = [];
   }
 

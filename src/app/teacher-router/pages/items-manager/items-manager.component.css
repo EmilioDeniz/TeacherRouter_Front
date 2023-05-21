@@ -50,7 +50,7 @@
 .materials-list {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 65vh;
+  height: 60vh;
 }
 
 .search,
@@ -112,11 +112,23 @@
 #add {
   background-color: #92ebb2;
 }
+#add:hover{
+  background-color: #6cb386;
+  cursor: pointer;
+}
 #edit {
   background-color: #7596f5;
 }
+#edit:hover{
+  background-color: #5b76c2;
+  cursor: pointer;
+}
 #remove {
   background-color: #f57e7a;
+}
+#remove:hover{
+  background-color: #c25b5b;
+  cursor: pointer;
 }
 
 .used-material {
@@ -126,13 +138,12 @@
   overflow: hidden;
 }
 
-.used-material-list{
+.used-material-list {
   margin: auto;
   height: 20vh;
   width: 60%;
   overflow-y: auto;
   overflow-x: hidden;
-
 }
 
 .remove-from-list {
@@ -143,4 +154,20 @@
   border-radius: 0.5vw;
   background-color: #f57e7a;
   float: right;
+}
+
+.delete {
+  margin: 0 auto 0 auto;
+  bottom: 8%;
+  left: 19%;
+  height: 4vh;
+  padding: 1vh 1vw;
+  width: 10vw;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: transparent;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
+}
+.delete:hover {
+  background-color: wheat;
 }
