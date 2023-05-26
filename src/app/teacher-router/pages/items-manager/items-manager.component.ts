@@ -80,7 +80,6 @@ export class ItemsManagerComponent {
       this.itemsRequest.editMaterial(this.newMaterial);
     }
     this.itemsRequest.getMaterial().subscribe((materials) => (
-      this.materials = materials.materials,
       this.ngOnInit()
     ));
     this.resetSelected();
@@ -90,6 +89,10 @@ export class ItemsManagerComponent {
     for (let index = 0; index < this.selectedMaterials.length; index++) {
       this.itemsRequest.removeMaterial(this.selectedMaterials[index])
     }
+
+    this.itemsRequest.getMaterial().subscribe((materials) => (
+      this.ngOnInit()
+    ));
 
     this.resetSelected();
   }
